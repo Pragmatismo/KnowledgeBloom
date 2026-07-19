@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "Animals",
+  "title": "Animals",
+  "subtitle": "Recognise and name 25 well-known animals",
+  "description": "A simple introductory pack using familiar animals and the question “Name this animal.”",
+  "author": "Knowledge in Bloom",
+  "version": "1.0.0",
+  "language": "en-GB",
+  "icon": "icon.png",
+  "item_files": [
+    "items.json"
+  ],
+  "item_order": "defined",
+  "default_round_size": 10,
+  "capabilities": {
+    "multiple_choice": true,
+    "typed_answer": true,
+    "categorize": true,
+    "media_only": true
+  },
+  "reversible": false,
+  "tags": [
+    "animals",
+    "beginner",
+    "identification",
+    "children",
+    "general knowledge"
+  ],
+  "suggested_follow_up_packs": [
+    "animals_wildlife",
+    "animals_obscure"
+  ],
+  "license": {
+    "name": "CC0 1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "credits": [
+    {
+      "name": "Knowledge in Bloom prototype pack builder",
+      "role": "Question data and placeholder artwork",
+      "license": "CC0 1.0"
+    }
+  ]
+}

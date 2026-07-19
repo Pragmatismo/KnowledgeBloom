@@ -1,0 +1,9 @@
+Knowledge in Bloom pack validation
+==================================
+Pack ID: animals_basic
+Items: 25
+Images: 25
+Unique item IDs: 25
+
+Result: PASS
+All required item fields and image files are present.

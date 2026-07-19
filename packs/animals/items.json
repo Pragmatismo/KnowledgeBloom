@@ -1,0 +1,819 @@
+[
+  {
+    "item_id": "domestic_cat",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/domestic_cat.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Cat",
+      "accepted_answers": [
+        "a cat",
+        "domestic cat",
+        "house cat"
+      ]
+    },
+    "distractors": [
+      "Dog",
+      "Rabbit",
+      "Tiger"
+    ],
+    "explanation": {
+      "text": "Cats are small domesticated mammals often kept as companion animals."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "domestic_dog",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/domestic_dog.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Dog",
+      "accepted_answers": [
+        "a dog",
+        "domestic dog"
+      ]
+    },
+    "distractors": [
+      "Cat",
+      "Wolf",
+      "Bear"
+    ],
+    "explanation": {
+      "text": "Dogs are domesticated mammals that have lived alongside people for thousands of years."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "horse",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/horse.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Horse",
+      "accepted_answers": [
+        "a horse"
+      ]
+    },
+    "distractors": [
+      "Cow",
+      "Zebra",
+      "Sheep"
+    ],
+    "explanation": {
+      "text": "Horses are large hoofed mammals commonly used for riding and farm work."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "cow",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/cow.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Cow",
+      "accepted_answers": [
+        "a cow",
+        "cattle"
+      ]
+    },
+    "distractors": [
+      "Horse",
+      "Sheep",
+      "Pig"
+    ],
+    "explanation": {
+      "text": "Cows are domesticated cattle raised in many parts of the world."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "sheep",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/sheep.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Sheep",
+      "accepted_answers": [
+        "a sheep"
+      ]
+    },
+    "distractors": [
+      "Cow",
+      "Goat",
+      "Pig"
+    ],
+    "explanation": {
+      "text": "Sheep are domesticated mammals known for their woolly coats."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "pig",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/pig.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Pig",
+      "accepted_answers": [
+        "a pig",
+        "domestic pig"
+      ]
+    },
+    "distractors": [
+      "Cow",
+      "Sheep",
+      "Bear"
+    ],
+    "explanation": {
+      "text": "Pigs are intelligent domesticated mammals with broad snouts."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "rabbit",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/rabbit.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Rabbit",
+      "accepted_answers": [
+        "a rabbit",
+        "bunny",
+        "a bunny"
+      ]
+    },
+    "distractors": [
+      "Cat",
+      "Mouse",
+      "Kangaroo"
+    ],
+    "explanation": {
+      "text": "Rabbits are small mammals with long ears and powerful hind legs."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "lion",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/lion.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Lion",
+      "accepted_answers": [
+        "a lion"
+      ]
+    },
+    "distractors": [
+      "Tiger",
+      "Bear",
+      "Cat"
+    ],
+    "explanation": {
+      "text": "Lions are large cats that live mainly in Africa, with a small population in India."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "tiger",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/tiger.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Tiger",
+      "accepted_answers": [
+        "a tiger"
+      ]
+    },
+    "distractors": [
+      "Lion",
+      "Zebra",
+      "Cat"
+    ],
+    "explanation": {
+      "text": "Tigers are large striped cats native to Asia."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "elephant",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/elephant.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Elephant",
+      "accepted_answers": [
+        "an elephant"
+      ]
+    },
+    "distractors": [
+      "Giraffe",
+      "Hippopotamus",
+      "Rhinoceros"
+    ],
+    "explanation": {
+      "text": "Elephants are very large mammals recognised by their trunks and tusks."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "giraffe",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/giraffe.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Giraffe",
+      "accepted_answers": [
+        "a giraffe"
+      ]
+    },
+    "distractors": [
+      "Zebra",
+      "Horse",
+      "Elephant"
+    ],
+    "explanation": {
+      "text": "Giraffes are tall African mammals with long necks and patterned coats."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "zebra",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/zebra.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Zebra",
+      "accepted_answers": [
+        "a zebra"
+      ]
+    },
+    "distractors": [
+      "Horse",
+      "Tiger",
+      "Giraffe"
+    ],
+    "explanation": {
+      "text": "Zebras are African mammals recognised by their black-and-white stripes."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "bear",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/bear.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Bear",
+      "accepted_answers": [
+        "a bear"
+      ]
+    },
+    "distractors": [
+      "Lion",
+      "Gorilla",
+      "Pig"
+    ],
+    "explanation": {
+      "text": "Bears are large, powerfully built mammals found in several parts of the world."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ],
+    "distractor_exclusions": [
+      "panda"
+    ]
+  },
+  {
+    "item_id": "gorilla",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/gorilla.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Gorilla",
+      "accepted_answers": [
+        "a gorilla"
+      ]
+    },
+    "distractors": [
+      "Monkey",
+      "Bear",
+      "Panda"
+    ],
+    "explanation": {
+      "text": "Gorillas are large apes native to the forests of central Africa."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "panda",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/panda.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Panda",
+      "accepted_answers": [
+        "a panda",
+        "giant panda"
+      ]
+    },
+    "distractors": [
+      "Bear",
+      "Gorilla",
+      "Penguin"
+    ],
+    "explanation": {
+      "text": "Giant pandas are black-and-white bears native to China."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ],
+    "distractor_exclusions": [
+      "bear"
+    ]
+  },
+  {
+    "item_id": "kangaroo",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/kangaroo.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Kangaroo",
+      "accepted_answers": [
+        "a kangaroo"
+      ]
+    },
+    "distractors": [
+      "Rabbit",
+      "Giraffe",
+      "Monkey"
+    ],
+    "explanation": {
+      "text": "Kangaroos are Australian marsupials that move using powerful hind legs."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "dolphin",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/dolphin.png",
+      "category": "Mammal",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Dolphin",
+      "accepted_answers": [
+        "a dolphin"
+      ]
+    },
+    "distractors": [
+      "Shark",
+      "Seal",
+      "Penguin"
+    ],
+    "explanation": {
+      "text": "Dolphins are intelligent aquatic mammals that breathe air."
+    },
+    "tags": [
+      "animal",
+      "mammal",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "chicken",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/chicken.png",
+      "category": "Bird",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Chicken",
+      "accepted_answers": [
+        "a chicken",
+        "hen",
+        "a hen"
+      ]
+    },
+    "distractors": [
+      "Duck",
+      "Owl",
+      "Penguin"
+    ],
+    "explanation": {
+      "text": "Chickens are domesticated birds kept around the world."
+    },
+    "tags": [
+      "animal",
+      "bird",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "duck",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/duck.png",
+      "category": "Bird",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Duck",
+      "accepted_answers": [
+        "a duck"
+      ]
+    },
+    "distractors": [
+      "Chicken",
+      "Penguin",
+      "Owl"
+    ],
+    "explanation": {
+      "text": "Ducks are water birds with broad bills and webbed feet."
+    },
+    "tags": [
+      "animal",
+      "bird",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "penguin",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/penguin.png",
+      "category": "Bird",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Penguin",
+      "accepted_answers": [
+        "a penguin"
+      ]
+    },
+    "distractors": [
+      "Duck",
+      "Owl",
+      "Dolphin"
+    ],
+    "explanation": {
+      "text": "Penguins are flightless seabirds found mainly in the Southern Hemisphere."
+    },
+    "tags": [
+      "animal",
+      "bird",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "owl",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/owl.png",
+      "category": "Bird",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Owl",
+      "accepted_answers": [
+        "an owl"
+      ]
+    },
+    "distractors": [
+      "Duck",
+      "Chicken",
+      "Penguin"
+    ],
+    "explanation": {
+      "text": "Owls are birds of prey with forward-facing eyes and excellent hearing."
+    },
+    "tags": [
+      "animal",
+      "bird",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "shark",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/shark.png",
+      "category": "Fish",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Shark",
+      "accepted_answers": [
+        "a shark"
+      ]
+    },
+    "distractors": [
+      "Dolphin",
+      "Crocodile",
+      "Penguin"
+    ],
+    "explanation": {
+      "text": "Sharks are cartilaginous fish found in oceans around the world."
+    },
+    "tags": [
+      "animal",
+      "fish",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "crocodile",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/crocodile.png",
+      "category": "Reptile",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Crocodile",
+      "accepted_answers": [
+        "a crocodile",
+        "croc"
+      ]
+    },
+    "distractors": [
+      "Alligator",
+      "Shark",
+      "Snake"
+    ],
+    "explanation": {
+      "text": "Crocodiles are large semi-aquatic reptiles with long jaws and armoured skin."
+    },
+    "tags": [
+      "animal",
+      "reptile",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "snake",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/snake.png",
+      "category": "Reptile",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Snake",
+      "accepted_answers": [
+        "a snake"
+      ]
+    },
+    "distractors": [
+      "Crocodile",
+      "Frog",
+      "Worm"
+    ],
+    "explanation": {
+      "text": "Snakes are elongated reptiles without legs."
+    },
+    "tags": [
+      "animal",
+      "reptile",
+      "basic identification"
+    ]
+  },
+  {
+    "item_id": "frog",
+    "question": {
+      "text": "Name this animal.",
+      "image": "assets/images/frog.png",
+      "category": "Amphibian",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Frog",
+      "accepted_answers": [
+        "a frog"
+      ]
+    },
+    "distractors": [
+      "Toad",
+      "Snake",
+      "Crocodile"
+    ],
+    "explanation": {
+      "text": "Frogs are amphibians that usually begin life as aquatic tadpoles."
+    },
+    "tags": [
+      "animal",
+      "amphibian",
+      "basic identification"
+    ]
+  }
+]
