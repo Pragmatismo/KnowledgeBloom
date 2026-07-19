@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards · Knowledge in Bloom</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="game">
+    <header class="game-header">
+      <div><span class="eyebrow">Knowledge in Bloom</span><h1>Flashcards</h1></div>
+      <div class="round-progress"><span id="progress-label">Preparing your round…</span><div class="progress-track"><span id="progress-bar"></span></div></div>
+      <button id="leave" class="quiet" type="button">Leave round</button>
+    </header>
+    <section id="card" class="card" aria-live="polite"></section>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>

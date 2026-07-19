@@ -30,9 +30,16 @@ def catalogue():
         found = []
         for icon in sorted((ROOT / folder).glob("*/icon.png")):
             entry = {"id": icon.parent.name, "icon": icon.relative_to(ROOT).as_posix()}
-            manifest = icon.parent / "pack.json"
-            if manifest.exists():
-                metadata = json.loads(manifest.read_text())
+            metadata_file = icon.parent / ("pack.json" if folder == "packs" else "manifest.json")
+            if metadata_file.exists():
+                metadata = json.loads(metadata_file.read_text())
+                if folder == "minigames":
+                    entry.update(metadata)
+                    entry["id"] = metadata.get("game_id", entry["id"])
+                    entry["icon"] = (icon.parent / metadata.get("icon", "icon.png")).relative_to(ROOT).as_posix()
+                    entry["entrypoint"] = (icon.parent / metadata["entrypoint"]).relative_to(ROOT).as_posix()
+                    found.append(entry)
+                    continue
                 entry.update({key: metadata.get(key) for key in
                               ("pack_id", "title", "subtitle", "description", "author", "version",
                                "language", "tags", "license", "credits")})
