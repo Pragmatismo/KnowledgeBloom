@@ -1,0 +1,1228 @@
+# Knowledge in Bloom — Learning Pack Schema v1
+
+## 1. Design principle
+
+Learning packs contain only permanent educational content.
+
+They do not contain:
+
+* user progress;
+* review dates;
+* mastery;
+* scores;
+* garden placement;
+* active or completed status;
+* mini-game usage;
+* personal difficulty values.
+
+User data references pack content using:
+
+```text
+pack_id:item_id
+```
+
+For example:
+
+```text
+animals_basic:domestic_cat
+```
+
+Pack IDs and item IDs must remain stable between updates.
+
+---
+
+# 2. Pack folder structure
+
+A basic pack uses:
+
+```text
+packs/
+└── animals_basic/
+    ├── pack.json
+    ├── items.json
+    ├── icon.png
+    └── assets/
+        ├── images/
+        ├── audio/
+        └── video/
+```
+
+Only `pack.json` and at least one item file are required.
+
+All file paths are relative to the pack folder.
+
+---
+
+# 3. Pack manifest
+
+Example `pack.json`:
+
+```json
+{
+  "schema_version": "1.0",
+  "pack_id": "animals_basic",
+  "title": "Basic Animals",
+  "subtitle": "Recognise and name common animals",
+  "description": "A beginner pack covering familiar mammals, birds, reptiles and aquatic animals.",
+
+  "author": "Knowledge in Bloom",
+  "version": "1.0.0",
+  "language": "en-GB",
+
+  "icon": "icon.png",
+
+  "item_files": [
+    "items.json"
+  ],
+
+  "item_order": "defined",
+  "default_round_size": 10,
+
+  "capabilities": {
+    "multiple_choice": true,
+    "typed_answer": true,
+    "categorize": true,
+    "media_only": true
+  },
+
+  "reversible": false,
+
+  "tags": [
+    "animals",
+    "biology",
+    "classification",
+    "beginner"
+  ],
+
+  "suggested_follow_up_packs": [
+    "animals_wildlife",
+    "animals_obscure"
+  ],
+
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+
+  "credits": []
+}
+```
+
+## Required fields
+
+```text
+schema_version
+pack_id
+title
+version
+item_files
+```
+
+## Recommended fields
+
+```text
+description
+author
+language
+icon
+capabilities
+tags
+reversible
+suggested_follow_up_packs
+license
+credits
+```
+
+---
+
+# 4. Pack ID
+
+`pack_id` must be:
+
+* unique among installed packs;
+* stable between versions;
+* lowercase;
+* safe for filenames and URLs;
+* made from letters, numbers, underscores or hyphens.
+
+Good examples:
+
+```text
+animals_basic
+animals_obscure
+french_001_greetings
+french_002_clothing
+cell_biology
+famous_art
+```
+
+Changing the visible title must not change the pack ID.
+
+---
+
+# 5. Capabilities
+
+The `capabilities` object describes which standard forms of interaction the pack is designed to support.
+
+```json
+{
+  "capabilities": {
+    "multiple_choice": true,
+    "typed_answer": true,
+    "categorize": false,
+    "media_only": false
+  }
+}
+```
+
+These are descriptive flags, not a fixed list of permitted mini-games.
+
+User-created mini-games may inspect the available item fields directly and ignore these flags when appropriate.
+
+## `multiple_choice`
+
+The pack can provide suitable multiple-choice questions.
+
+This may use:
+
+* explicit distractors;
+* answers from other items;
+* distractor exclusions.
+
+## `typed_answer`
+
+The pack contains answers suitable for typed input.
+
+Items may include alternative accepted spellings and answer forms.
+
+## `categorize`
+
+Some or all items contain category information suitable for sorting or classification activities.
+
+## `media_only`
+
+Questions may be presented using media alone, without displaying the question text.
+
+For example:
+
+* show an animal image and ask the player to name it;
+* play an audio clip and ask for the word;
+* show a painting and ask for its title.
+
+The exact question instruction may still be supplied by the mini-game interface.
+
+## Future capability flags
+
+Additional controlled flags may be added in later schema versions without requiring a list of named mini-game types.
+
+Mini-games should primarily inspect the actual fields available on each item.
+
+---
+
+# 6. Follow-up packs
+
+A pack may suggest one or more packs to try after completion.
+
+```json
+{
+  "suggested_follow_up_packs": [
+    "french_002_clothing",
+    "french_003_food"
+  ]
+}
+```
+
+When the learner completes the pack, the application may display:
+
+```text
+Great — you completed French Greetings.
+
+Would you like to try French Clothing next?
+```
+
+Each follow-up entry references another `pack_id`.
+
+Missing or uninstalled follow-up packs should be ignored gracefully.
+
+This system replaces the need for a separate multipack structure in version one.
+
+Related courses can be organised as individual packs:
+
+```text
+french_001_greetings
+french_002_clothing
+french_003_food
+french_004_travel
+```
+
+Each pack remains independently installable and editable.
+
+---
+
+# 7. Item structure
+
+Each item represents one learnable relationship.
+
+```json
+{
+  "item_id": "domestic_cat",
+
+  "question": {
+    "text": "What animal is this?",
+    "image": "assets/images/cat.png",
+    "category": "Mammal"
+  },
+
+  "answer": {
+    "text": "Cat",
+    "accepted_answers": [
+      "cat",
+      "a cat",
+      "domestic cat",
+      "house cat"
+    ]
+  },
+
+  "distractors": [
+    "Dog",
+    "Mink",
+    "Fox"
+  ],
+
+  "distractor_exclusions": [
+    "wildcat"
+  ],
+
+  "explanation": {
+    "text": "The domestic cat is a small carnivorous mammal commonly kept as a companion animal."
+  },
+
+  "tags": [
+    "animal",
+    "mammal",
+    "domestic"
+  ],
+
+  "credits": []
+}
+```
+
+## Required fields
+
+```text
+item_id
+question
+answer
+```
+
+Everything else is optional.
+
+---
+
+# 8. Stable item IDs
+
+Each item must have an ID unique within the pack.
+
+Good examples:
+
+```text
+domestic_cat
+common_mink
+photosynthesis
+bonjour
+sodium
+mona_lisa
+```
+
+Avoid positional or temporary IDs such as:
+
+```text
+question_1
+card_17
+new_item
+```
+
+The ID identifies the underlying learning concept.
+
+Changing the wording, image or explanation must not normally change the item ID.
+
+---
+
+# 9. Question object
+
+A question may contain any suitable combination of:
+
+```text
+text
+image
+audio
+video
+category
+```
+
+At least one usable prompt field must be present.
+
+## Text-only question
+
+```json
+{
+  "question": {
+    "text": "What is the French word for hat?"
+  }
+}
+```
+
+## Image question
+
+```json
+{
+  "question": {
+    "text": "Name this animal.",
+    "image": "assets/images/otter.png"
+  }
+}
+```
+
+## Media-only-capable question
+
+```json
+{
+  "question": {
+    "text": "Which animal is shown?",
+    "image": "assets/images/otter.png"
+  }
+}
+```
+
+A media-only mini-game may display only the image while using the text internally or replacing it with its own instruction.
+
+## Audio question
+
+```json
+{
+  "question": {
+    "text": "Which word do you hear?",
+    "audio": "assets/audio/bonjour.ogg"
+  }
+}
+```
+
+## Video question
+
+```json
+{
+  "question": {
+    "text": "Which movement is being demonstrated?",
+    "video": "assets/video/rotation.mp4"
+  }
+}
+```
+
+## Mixed-media question
+
+```json
+{
+  "question": {
+    "text": "Listen and select the matching animal.",
+    "audio": "assets/audio/cow.ogg",
+    "image": "assets/images/farm_scene.png"
+  }
+}
+```
+
+---
+
+# 10. Categories
+
+Categories belong directly to individual questions.
+
+```json
+{
+  "question": {
+    "text": "What animal is this?",
+    "image": "assets/images/cat.png",
+    "category": "Mammal"
+  }
+}
+```
+
+A category may be used by:
+
+* sorting games;
+* classification games;
+* grouped review;
+* pack summaries;
+* category filters.
+
+If no category is supplied, the item is not used in mini-games that require category data.
+
+## Multiple categories
+
+Where needed, `category` may be an array:
+
+```json
+{
+  "question": {
+    "text": "What animal is this?",
+    "image": "assets/images/duck.png",
+    "category": [
+      "Bird",
+      "Water Animal"
+    ]
+  }
+}
+```
+
+Mini-games must be prepared for either:
+
+```json
+"category": "Bird"
+```
+
+or:
+
+```json
+"category": [
+  "Bird",
+  "Water Animal"
+]
+```
+
+For most version-one packs, one category per item is preferable.
+
+---
+
+# 11. Answer object
+
+The answer object contains the canonical answer and optional accepted alternatives.
+
+```json
+{
+  "answer": {
+    "text": "Mink",
+    "accepted_answers": [
+      "mink",
+      "a mink",
+      "American mink"
+    ]
+  }
+}
+```
+
+## Canonical answer
+
+`answer.text` is used for:
+
+* result screens;
+* flashcards;
+* multiple-choice buttons;
+* explanations;
+* matching games;
+* reference pages.
+
+The canonical answer should automatically count as an accepted typed answer.
+
+## Accepted answers
+
+These may include:
+
+* alternate spellings;
+* regional spellings;
+* singular or plural forms;
+* abbreviations;
+* accented and unaccented forms;
+* answers with optional articles;
+* commonly accepted synonyms.
+
+Example:
+
+```json
+{
+  "answer": {
+    "text": "Colour",
+    "accepted_answers": [
+      "color"
+    ]
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "answer": {
+    "text": "Chapeau",
+    "accepted_answers": [
+      "un chapeau",
+      "le chapeau"
+    ]
+  }
+}
+```
+
+---
+
+# 12. Answer comparison
+
+Basic normalization belongs to the application rather than being repeated in every pack.
+
+Typed answers should normally be compared after:
+
+* trimming outer whitespace;
+* converting to lowercase;
+* collapsing repeated spaces;
+* normalising Unicode;
+* normalising typographic apostrophes.
+
+An item may optionally override comparison behaviour:
+
+```json
+{
+  "answer": {
+    "text": "Éléphant",
+    "accepted_answers": [
+      "elephant"
+    ],
+    "comparison": {
+      "ignore_case": true,
+      "ignore_accents": true,
+      "ignore_punctuation": true
+    }
+  }
+}
+```
+
+These options are optional.
+
+---
+
+# 13. Answer media
+
+An answer may include media.
+
+```json
+{
+  "answer": {
+    "text": "Starry Night",
+    "image": "assets/images/starry_night.png",
+    "accepted_answers": [
+      "the starry night"
+    ]
+  }
+}
+```
+
+Supported optional fields:
+
+```text
+image
+audio
+video
+```
+
+This can support:
+
+* artwork-title matching;
+* sound-image matching;
+* visual flashcards;
+* memory-card games;
+* reversible packs;
+* media-based answer displays.
+
+---
+
+# 14. Distractors
+
+Explicit wrong answers are optional.
+
+```json
+{
+  "distractors": [
+    "Otter",
+    "Ferret",
+    "Stoat"
+  ]
+}
+```
+
+When explicit distractors are absent, a multiple-choice game may draw canonical answers from other compatible pack items.
+
+Explicit distractors are useful when:
+
+* randomly selected answers might also be valid;
+* the pack contains overlapping concepts;
+* a particular misconception should be tested;
+* the pack is too small to generate good alternatives;
+* closely related choices are educationally useful.
+
+Mini-games should not assume that every item has explicit distractors.
+
+---
+
+# 15. Distractor exclusions
+
+An item may identify other items whose answers must not be used as generated distractors.
+
+```json
+{
+  "distractor_exclusions": [
+    "european_mink",
+    "wildcat"
+  ]
+}
+```
+
+Values reference item IDs within the same pack.
+
+This prevents ambiguous or equally valid answer options.
+
+For example, a broad question asking for “a cat” should not use another cat species as an automatically generated wrong answer unless that distinction is intentional.
+
+---
+
+# 16. Distractor generation order
+
+When generating multiple-choice options, prefer:
+
+1. explicit item distractors;
+2. compatible answers sharing the same category;
+3. compatible answers elsewhere in the pack;
+4. generic fallback choices only when necessary.
+
+Exclude:
+
+* the correct answer;
+* duplicate text;
+* accepted answer alternatives;
+* items listed in `distractor_exclusions`.
+
+---
+
+# 17. Explanation object
+
+Explanations are optional.
+
+```json
+{
+  "explanation": {
+    "text": "Minks are semi-aquatic members of the mustelid family.",
+    "image": "assets/images/mink_features.png",
+    "audio": "assets/audio/mink_explanation.ogg",
+    "video": null
+  }
+}
+```
+
+Supported fields:
+
+```text
+text
+image
+audio
+video
+```
+
+A mini-game may use only the explanation text even when richer media is available.
+
+Explanations do not affect whether an answer is correct.
+
+---
+
+# 18. Reversible packs
+
+Reversibility applies at pack level in version one.
+
+```json
+{
+  "reversible": true
+}
+```
+
+This indicates that compatible mini-games may reverse the learning relationship.
+
+Examples:
+
+```text
+English → French
+French → English
+
+Artwork → Title
+Title → Artwork
+
+Term → Definition
+Definition → Term
+```
+
+Games must not reverse a pack unless `reversible` is true.
+
+A reversible pack should be designed so that all or nearly all of its items make sense in both directions.
+
+If only a small minority of items are reversible, they should normally be placed in a separate pack.
+
+---
+
+# 19. Tags
+
+Pack tags help users discover learning packs.
+
+```json
+{
+  "tags": [
+    "french",
+    "language",
+    "beginner",
+    "clothing"
+  ]
+}
+```
+
+Item tags are optional and may support:
+
+* searching;
+* filtering;
+* future game mechanics;
+* content organisation.
+
+```json
+{
+  "tags": [
+    "animal",
+    "mammal",
+    "domestic"
+  ]
+}
+```
+
+Tags should remain lightweight and do not need strict central registration.
+
+---
+
+# 20. Item ordering
+
+Items appear in the order in which they are listed unless the pack specifies otherwise.
+
+```json
+{
+  "item_order": "defined"
+}
+```
+
+Version-one values:
+
+```text
+defined
+random
+```
+
+`defined` is recommended because it allows introductory material to appear before more difficult items.
+
+The user-progress system decides how many items are actively being learned. The pack only defines the source order.
+
+---
+
+# 21. Pack progression through separate packs
+
+A structured course should use separate packs with follow-up references:
+
+```text
+french_001_greetings
+french_002_clothing
+french_003_food
+french_004_travel
+```
+
+This provides:
+
+* smaller downloadable units;
+* easier editing;
+* clearer progress;
+* simple completion rewards;
+* independent installation;
+* straightforward use by Codex and pack creators.
+
+---
+
+# 22. Credits and attribution
+
+Pack-level credits may be stored in the manifest.
+
+```json
+{
+  "credits": [
+    {
+      "name": "Example Museum",
+      "role": "Artwork images",
+      "url": "https://example.org",
+      "license": "Public domain"
+    }
+  ]
+}
+```
+
+Individual items or media may also include credits.
+
+```json
+{
+  "question": {
+    "image": "assets/images/mona_lisa.jpg",
+    "credit": {
+      "creator": "Leonardo da Vinci",
+      "source": "Example Museum",
+      "url": "https://example.org/artwork",
+      "license": "Public domain"
+    }
+  }
+}
+```
+
+The application may use these fields to generate an automatic references and credits page.
+
+Credits should be supported for:
+
+* question images;
+* answer images;
+* audio;
+* video;
+* explanation media;
+* pack icons.
+
+A pack may omit credits for original or AI-generated content when no attribution is required, although creators may still document the source.
+
+---
+
+# 23. Pack licensing
+
+A pack may include licensing information:
+
+```json
+{
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  }
+}
+```
+
+This describes the pack as a whole.
+
+Individual media credits may specify different licensing where necessary.
+
+---
+
+# 24. Mini-game compatibility
+
+Mini-games should inspect the fields they need rather than depend on a fixed registry of game types.
+
+Examples:
+
+## Basic question-and-answer game
+
+Requires:
+
+```text
+question
+answer
+```
+
+## Multiple choice
+
+Requires:
+
+```text
+question
+answer.text
+```
+
+It may use explicit distractors or generate them from other items.
+
+## Typed answer
+
+Requires:
+
+```text
+question
+answer.text
+```
+
+It may also use:
+
+```text
+answer.accepted_answers
+answer.comparison
+```
+
+## Image recognition
+
+Requires:
+
+```text
+question.image
+answer.text
+```
+
+## Audio recognition
+
+Requires:
+
+```text
+question.audio
+answer.text
+```
+
+## Media-only recognition
+
+Requires suitable question media and:
+
+```text
+capabilities.media_only = true
+```
+
+## Memory matching
+
+May use any displayable question and answer pairing.
+
+## Categorisation
+
+Requires:
+
+```text
+question.category
+```
+
+The pack-level `categorize` flag communicates that enough suitable content is available for category-based games.
+
+A mini-game should skip incompatible items rather than assume every item supports every interaction.
+
+---
+
+# 25. Minimal valid item
+
+A version-one item needs only:
+
+```json
+{
+  "item_id": "example",
+  "question": {
+    "text": "Example question"
+  },
+  "answer": {
+    "text": "Example answer"
+  }
+}
+```
+
+Everything else is optional.
+
+---
+
+# 26. Full example item
+
+```json
+{
+  "item_id": "common_mink",
+
+  "question": {
+    "text": "Which animal is shown?",
+    "image": "assets/images/common_mink.png",
+    "category": "Mustelid",
+    "credit": {
+      "creator": "Example Photographer",
+      "source": "Example Archive",
+      "url": "https://example.org/mink",
+      "license": "CC BY 4.0"
+    }
+  },
+
+  "answer": {
+    "text": "Mink",
+    "accepted_answers": [
+      "a mink",
+      "American mink"
+    ],
+    "comparison": {
+      "ignore_case": true,
+      "ignore_accents": true,
+      "ignore_punctuation": true
+    }
+  },
+
+  "distractors": [
+    "Otter",
+    "Ferret",
+    "Stoat"
+  ],
+
+  "distractor_exclusions": [
+    "european_mink"
+  ],
+
+  "explanation": {
+    "text": "Minks are semi-aquatic members of the mustelid family. They have long bodies, short legs and waterproof fur.",
+    "image": "assets/images/mink_features.png"
+  },
+
+  "tags": [
+    "wildlife",
+    "semi-aquatic",
+    "carnivore"
+  ]
+}
+```
+
+---
+
+# 27. Complete minimal pack
+
+## `pack.json`
+
+```json
+{
+  "schema_version": "1.0",
+  "pack_id": "animals_basic",
+  "title": "Basic Animals",
+  "description": "Recognise and name common animals.",
+  "version": "1.0.0",
+  "language": "en-GB",
+  "icon": "icon.png",
+
+  "item_files": [
+    "items.json"
+  ],
+
+  "item_order": "defined",
+
+  "capabilities": {
+    "multiple_choice": true,
+    "typed_answer": true,
+    "categorize": true,
+    "media_only": true
+  },
+
+  "reversible": false,
+
+  "tags": [
+    "animals",
+    "beginner",
+    "biology"
+  ],
+
+  "suggested_follow_up_packs": [
+    "animals_wildlife"
+  ],
+
+  "credits": []
+}
+```
+
+## `items.json`
+
+```json
+[
+  {
+    "item_id": "domestic_cat",
+
+    "question": {
+      "text": "What animal is this?",
+      "image": "assets/images/cat.png",
+      "category": "Mammal"
+    },
+
+    "answer": {
+      "text": "Cat",
+      "accepted_answers": [
+        "a cat",
+        "domestic cat",
+        "house cat"
+      ]
+    },
+
+    "distractors": [
+      "Dog",
+      "Mink",
+      "Fox"
+    ],
+
+    "explanation": {
+      "text": "The domestic cat is a small carnivorous mammal."
+    },
+
+    "tags": [
+      "animal",
+      "mammal",
+      "domestic"
+    ]
+  },
+
+  {
+    "item_id": "robin",
+
+    "question": {
+      "text": "What bird is this?",
+      "image": "assets/images/robin.png",
+      "category": "Bird"
+    },
+
+    "answer": {
+      "text": "Robin",
+      "accepted_answers": [
+        "a robin",
+        "European robin"
+      ]
+    }
+  }
+]
+```
+
+---
+
+# 28. Validation requirements
+
+A pack should fail validation when:
+
+* `pack_id` is missing;
+* `schema_version` is unsupported;
+* an item file cannot be found;
+* two items use the same `item_id`;
+* an item has no usable question content;
+* an item has no canonical answer;
+* malformed JSON prevents loading;
+* an asset path attempts to leave the pack folder.
+
+Warnings may be shown when:
+
+* an optional asset is missing;
+* a distractor duplicates the correct answer;
+* accepted answers contain duplicates;
+* a distractor matches an accepted answer;
+* `categorize` is true but no items have categories;
+* `media_only` is true but no items contain question media;
+* `typed_answer` is true but answers are unsuitable for typing;
+* a suggested follow-up pack is not installed;
+* an item has too few suitable multiple-choice distractors.
+
+Invalid items should be reported clearly rather than causing the entire application to fail without explanation.
+
+---
+
+# 29. Excluded user data
+
+Pack files must not contain:
+
+* active, paused or completed status for a user;
+* which items have been introduced;
+* learning stage;
+* mastery;
+* review dates;
+* recent results;
+* adaptive difficulty;
+* plant choice;
+* plant growth or moisture;
+* garden location;
+* mini-game scores;
+* game play counts;
+* achievements;
+* user settings.
+
+All of these belong in separate application and user-progress data.
+
