@@ -1,0 +1,638 @@
+KNOWLEDGE IN BLOOM
+MINI-GAME DESIGN AND INTEGRATION BRIEF
+Developer Reference — Version 1.0
+
+
+1. PURPOSE
+==========
+
+Knowledge in Bloom supports independently developed mini-games that all use the
+same installed learning packs and the same central user-learning system.
+
+A mini-game provides a way to practise selected learning items. It does not own the
+learning schedule, user progress, garden, flowers, pack state, or save files.
+
+The host application:
+
+1. discovers the mini-game;
+2. checks what content the game can use;
+3. selects suitable learning items from the user's active packs;
+4. sends the mini-game a self-contained session package;
+5. receives a standard result package;
+6. validates and sanity-checks the result;
+7. applies valid results through the central learning system;
+8. updates review timing, mastery, difficulty, plants, rewards, and the user save.
+
+This separation allows mini-games to be added, replaced, or removed without editing
+the rest of the application.
+
+
+2. AUTHORITATIVE RELATED DOCUMENTS
+==================================
+
+Mini-game developers must refer to the project's current versions of:
+
+- the Learning Pack Schema;
+- the User Data and Learning System Schema;
+- this Mini-game Design and Integration Brief.
+
+Those documents define the meaning of pack fields, user progress, valid reviews,
+practice, mastery, difficulty, review timing, and memory plants.
+
+A mini-game must not invent an independent interpretation of those systems.
+
+
+3. DROP-IN FOLDER RULE
+======================
+
+Every mini-game must be entirely contained within its own folder.
+
+Example:
+
+minigames/
+└── flashcards/
+    ├── manifest.json
+    ├── icon.png
+    ├── game code files
+    ├── stylesheets
+    ├── templates
+    └── assets/
+        ├── images/
+        ├── audio/
+        └── video/
+
+All code, images, sounds, fonts, styles, templates, and other resources used only by
+that mini-game must remain inside its folder.
+
+A new mini-game should become available by adding its folder.
+
+An old mini-game should be removable by deleting its folder.
+
+Adding or removing a mini-game must not require edits to:
+
+- the main application;
+- the learning pack files;
+- user files;
+- other mini-game folders;
+- the central learning scheduler;
+- the garden renderer.
+
+Shared host APIs may be called, but the mini-game must not place private code or
+assets elsewhere in the project.
+
+
+4. MINI-GAME DISCOVERY
+======================
+
+The host application discovers mini-games from the minigames directory.
+
+Each mini-game should provide a manifest file containing the information required
+for discovery and launch.
+
+Recommended manifest example:
+
+{
+  "schema_version": "1.0",
+  "game_id": "flashcards",
+  "title": "Flashcards",
+  "description": "Learn new items and review existing ones using question cards.",
+  "icon": "icon.png",
+  "entrypoint": "index.html",
+  "version": "1.0.0",
+
+  "requirements": {
+    "question": true,
+    "answer": true,
+    "multiple_choice": true,
+    "typed_answer": true,
+    "category": false,
+    "question_media": false,
+    "answer_media": false
+  }
+}
+
+The exact entrypoint field may reflect the project's implementation, but it must
+refer to a file inside the mini-game folder.
+
+The requirements object describes content the game can use. It is not a list of
+approved game genres.
+
+A future user-created game may use a completely new mechanic as long as it can
+declare the pack fields it requires and return the standard result package.
+
+
+5. REQUIREMENTS AND CONTENT COMPATIBILITY
+=========================================
+
+The host, not the mini-game, decides which pack items are eligible for a session.
+
+A mini-game declares the fields or capabilities it requires.
+
+Examples:
+
+Basic question-and-answer game:
+- question;
+- answer.
+
+Multiple choice:
+- question;
+- answer text;
+- explicit distractors or enough compatible answers for generated distractors.
+
+Typed-answer game:
+- question;
+- canonical answer text;
+- optional accepted answers and comparison rules.
+
+Categorisation game:
+- displayable item content;
+- category data.
+
+Image-recognition game:
+- question image;
+- answer text.
+
+Audio-recognition game:
+- question audio;
+- answer text.
+
+Memory-pair game:
+- displayable question side;
+- displayable answer side.
+
+A mini-game should not assume that every item in a selected pack supports every
+mechanic.
+
+The host should filter incompatible items before constructing the session package.
+
+If too few compatible items are available, the host or game should show a clear
+message rather than fabricate invalid content.
+
+
+6. CENTRAL LEARNING AUTHORITY
+=============================
+
+The mini-game must never directly edit:
+
+- user.json;
+- pack progress;
+- learning state;
+- mastery;
+- difficulty;
+- review dates;
+- recent valid-review results;
+- practice-failure pressure;
+- pack completion;
+- memory plants;
+- garden rows;
+- furniture;
+- reputation;
+- achievements.
+
+The mini-game reports what happened.
+
+The central learning system decides what that result means.
+
+For example, a correct answer may be:
+
+- a valid scheduled review;
+- ordinary practice before the item is due;
+- an initial lesson attention check;
+- a retry after an earlier failure.
+
+Only the host learning system has enough information to classify and apply the
+result safely.
+
+
+7. SESSION INPUT PACKAGE
+========================
+
+The host sends a mini-game a session package containing only the data required for
+that session.
+
+Recommended structure:
+
+{
+  "session_schema_version": "1.0",
+  "session_id": "session_20260719_001",
+  "game_id": "flashcards",
+  "user_id": "usr_7f42c89e",
+  "started_at": "2026-07-19T18:00:00+01:00",
+
+  "pack_scope": {
+    "mode": "all_active",
+    "pack_ids": [
+      "animals_basic",
+      "french_001_greetings"
+    ]
+  },
+
+  "settings": {
+    "round_size": 10,
+    "answer_mode": "multiple_choice"
+  },
+
+  "items": [
+    {
+      "pack_id": "animals_basic",
+      "item_id": "domestic_cat",
+      "interaction_type": "valid_review",
+
+      "content": {
+        "question": {
+          "text": "Name this animal.",
+          "image": "packs/animals_basic/assets/images/domestic_cat.png"
+        },
+        "answer": {
+          "text": "Cat",
+          "accepted_answers": [
+            "a cat",
+            "domestic cat"
+          ]
+        },
+        "distractors": [
+          "Dog",
+          "Rabbit",
+          "Tiger"
+        ],
+        "explanation": {
+          "text": "Cats are small domesticated mammals."
+        }
+      },
+
+      "session_metadata": {
+        "is_due": true,
+        "is_new": false
+      }
+    }
+  ]
+}
+
+The host may omit private learning values that the mini-game does not need.
+
+A mini-game normally does not need to know:
+
+- mastery;
+- difficulty;
+- interval length;
+- exact review history;
+- plant location;
+- garden state.
+
+The interaction_type supplied by the host may be:
+
+- introduction;
+- valid_review;
+- practice.
+
+The host remains responsible for verifying this classification when results return.
+
+
+8. IMMUTABLE ITEM IDENTIFIERS
+=============================
+
+Every result must identify the original learning item using:
+
+- pack_id;
+- item_id.
+
+Example:
+
+{
+  "pack_id": "animals_basic",
+  "item_id": "domestic_cat"
+}
+
+Do not identify an item only by:
+
+- visible answer text;
+- array position;
+- question wording;
+- image filename.
+
+Text and media can change between pack versions. Stable IDs preserve progress.
+
+
+9. MINI-GAME INTERNAL SESSION STATE
+===================================
+
+A mini-game may keep temporary state while a session is running, including:
+
+- current card or turn;
+- current score;
+- attempt count;
+- retry queue;
+- temporary order;
+- animations;
+- lives or combo counters;
+- session-only exposure counts.
+
+This state does not need to be written into user.json.
+
+If session recovery is later required, it should use a separate temporary session
+record rather than partially applying learning progress before the round result is
+validated.
+
+
+10. STANDARD RESULT PACKAGE
+===========================
+
+At the end of a round, the mini-game returns one result package.
+
+Recommended structure:
+
+{
+  "result_schema_version": "1.0",
+  "session_id": "session_20260719_001",
+  "game_id": "flashcards",
+  "user_id": "usr_7f42c89e",
+  "round_completed": true,
+  "ended_at": "2026-07-19T18:08:00+01:00",
+
+  "summary": {
+    "items_presented": 10,
+    "first_attempt_correct": 8,
+    "items_finished_correctly": 10,
+    "items_deferred": 0
+  },
+
+  "results": [
+    {
+      "pack_id": "animals_basic",
+      "item_id": "domestic_cat",
+      "interaction_type": "valid_review",
+      "attempts": [
+        {
+          "correct": true
+        }
+      ],
+      "first_attempt_correct": true,
+      "finished_correctly": true,
+      "deferred": false
+    }
+  ]
+}
+
+Required per-item result fields:
+
+- pack_id;
+- item_id;
+- interaction_type;
+- attempts;
+- first_attempt_correct;
+- finished_correctly;
+- deferred.
+
+The attempts list should preserve the meaningful order of attempts.
+
+Example:
+
+{
+  "attempts": [
+    {"correct": false},
+    {"correct": false},
+    {"correct": true}
+  ]
+}
+
+The mini-game may add game-specific information, but the host must be able to ignore
+unknown optional fields safely.
+
+
+11. RESULT VALIDATION BY THE HOST
+=================================
+
+The host must treat mini-game output as untrusted input, even when the game ships
+with the application.
+
+Before applying results, verify:
+
+- the session ID exists and is active;
+- the game ID matches the launched game;
+- the user ID matches the active user;
+- every pack_id:item_id was included in the session package;
+- no result refers to an unknown item;
+- no item is duplicated unexpectedly;
+- attempt values are valid;
+- counts and summary values are plausible;
+- interaction types are permitted for that session;
+- the result package has not already been applied;
+- timestamps are plausible;
+- the mini-game has not supplied learning or garden values it is not allowed to set.
+
+The host should reject or quarantine malformed results rather than corrupt user
+progress.
+
+
+12. APPLYING RESULTS
+====================
+
+After validation, the central learning system processes each result.
+
+It determines:
+
+- whether a valid review was due;
+- whether the first attempt resolves that review;
+- whether later attempts are retries or practice;
+- whether an introduction was completed;
+- how mastery changes;
+- how difficulty changes;
+- how the interval changes;
+- the next review time;
+- whether practice-failure pressure changes;
+- whether the learning state changes;
+- whether a new seed enters the tray;
+- whether a linked plant becomes watered, grows, flowers, or wilts;
+- whether reputation, achievements, or pack completion are triggered.
+
+The mini-game must not calculate or return these final learning values.
+
+
+13. FIRST ATTEMPT AND RETRIES
+=============================
+
+For a valid review, the first meaningful answer determines the scheduled-review
+outcome.
+
+If the first answer is wrong:
+
+- the valid review is recorded as failed;
+- later success does not erase that failure;
+- retries may continue for teaching purposes.
+
+For an introduction:
+
+- the immediate test is an attention check;
+- it does not count as a spaced valid review;
+- attempts may influence initial difficulty and first-review timing;
+- the item is not considered fully introduced until the introduction process is
+  completed according to the game rules.
+
+For practice:
+
+- correct answers do not create long-term progress;
+- failures may increase practice-failure pressure;
+- retries may affect the current session but do not create additional valid reviews.
+
+
+14. RESPONSE TIME
+=================
+
+Response time is not required by the central learning contract.
+
+Different mini-games have incompatible timing behaviour. A user may also pause,
+read slowly, receive a call, or be required to wait for animation or game movement.
+
+A mini-game may use timing for its own score, but the host learning system should not
+require it to update mastery, difficulty, or scheduling.
+
+
+15. MIXED-PACK SESSIONS
+=======================
+
+A session may contain items from several packs.
+
+Every item and result must preserve its original pack_id.
+
+Example mixed session:
+
+- animals_basic:domestic_cat
+- french_002_clothing:chapeau
+- animals_basic:tiger
+
+Results must be applied to the correct pack and item.
+
+A mini-game must not merge progress merely because two answers share the same text.
+
+
+16. MEDIA
+=========
+
+A mini-game should use media supplied in the session package.
+
+It must not assume that all questions are text-only or image-only.
+
+Possible content includes:
+
+- question text;
+- question image;
+- question audio;
+- question video;
+- answer text;
+- answer image;
+- answer audio;
+- answer video;
+- explanation text or media.
+
+The mini-game should provide appropriate playback, replay, or display controls for
+the media types it claims to support.
+
+
+17. INTERRUPTED OR ABANDONED ROUNDS
+===================================
+
+If a user leaves a mini-game before completion:
+
+- do not fabricate a completed result;
+- return round_completed = false when possible;
+- only report attempts that actually occurred;
+- let the host decide whether partial results are usable;
+- do not award completion rewards directly.
+
+For initial version-one implementation, the host may choose not to apply partial
+rounds at all.
+
+
+18. GAME-SPECIFIC SCORING
+=========================
+
+Mini-games may calculate:
+
+- score;
+- combos;
+- lives;
+- stars;
+- completion time;
+- rankings;
+- visual rewards.
+
+These are presentation and game mechanics.
+
+They must not replace the central learning result fields.
+
+A high game score does not automatically mean a valid review occurred.
+
+
+19. NO DIRECT GARDEN ACCESS
+===========================
+
+Mini-games do not move, create, water, grow, wilt, or delete flowers directly.
+
+They return item results.
+
+The host applies those results to the user-learning system.
+
+The user-learning system updates the linked memory plants.
+
+This guarantees that every game contributes to the same garden consistently.
+
+
+20. COMPATIBILITY AND FAILURE
+=============================
+
+A mini-game should fail gracefully when:
+
+- too few suitable items exist;
+- a referenced optional media file is missing;
+- an item lacks optional explanation data;
+- a pack was removed after a session was prepared;
+- the user closes the round;
+- the result cannot be submitted.
+
+A mini-game must not modify unrelated application data to work around missing
+content.
+
+
+21. DESIGN FREEDOM
+==================
+
+Beyond the integration contract, mini-game creators are free to design:
+
+- any visual style;
+- any learning mechanic;
+- any control scheme;
+- any scoring system;
+- any animation;
+- any use of compatible pack fields;
+- any round length supported by the host;
+- single-pack or mixed-pack play.
+
+The mandatory rules are:
+
+1. Keep the entire game inside its mini-game folder.
+2. Use host-supplied pack and user session data.
+3. Preserve pack_id and item_id.
+4. Return the standard result package.
+5. Never write user learning or garden data directly.
+6. Allow the host to validate and apply results.
+
+
+22. IMPLEMENTATION CHECKLIST
+============================
+
+A mini-game integration is correct when:
+
+- the game appears by adding its folder;
+- the game disappears cleanly when its folder is removed;
+- no other project files require edits for discovery;
+- incompatible pack items are filtered out;
+- the game receives a bounded session package;
+- the game never opens or edits user.json;
+- results preserve pack and item IDs;
+- attempts are returned in order;
+- the first valid-review result cannot be overwritten by a retry;
+- malformed results are rejected by the host;
+- learning progress and flowers update only after host validation;
+- the game works in individual, All Active, and compatible All Everything sessions.
+
+END OF DOCUMENT

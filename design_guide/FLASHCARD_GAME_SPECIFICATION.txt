@@ -1,0 +1,777 @@
+KNOWLEDGE IN BLOOM
+INTRODUCTORY LESSON AND FLASHCARD MINI-GAME
+Full Design Specification — Version 1.0
+
+
+1. PURPOSE
+==========
+
+The Flashcards mini-game is the basic teaching and review activity for Knowledge in
+Bloom.
+
+It has two connected roles:
+
+1. introduce new learning items by showing the answer clearly and then testing
+   immediate attention;
+2. review previously introduced items selected by the central learning system.
+
+A round may mix:
+
+- due valid reviews;
+- ordinary practice or maintenance items;
+- newly introduced items.
+
+The game must follow:
+
+- the current Learning Pack Schema;
+- the current User Data and Learning System Schema;
+- the Mini-game Design and Integration Brief.
+
+This document defines Flashcards behaviour. It does not replace the central learning
+rules in those documents.
+
+
+2. DROP-IN FOLDER
+=================
+
+The complete mini-game must remain inside:
+
+minigames/flashcards/
+
+Recommended contents:
+
+minigames/flashcards/
+├── manifest.json
+├── icon.png
+├── entrypoint and game code
+├── styles
+└── assets/
+
+No Flashcards-only code or artwork should be required elsewhere in the project.
+
+The host discovers and launches the game through its manifest.
+
+
+3. SUPPORTED CONTENT
+====================
+
+Flashcards should support standard question-and-answer pack items.
+
+Version one should be able to display:
+
+Question side:
+- text;
+- image;
+- audio;
+- video;
+- supported combinations.
+
+Answer or teaching side:
+- canonical answer text;
+- optional answer image, audio, or video;
+- optional explanation text or media.
+
+Answer checking:
+- multiple choice;
+- typed answer where enabled and implemented.
+
+For typed answers, use the accepted-answer and comparison behaviour defined by the
+Learning Pack Schema.
+
+For multiple choice:
+
+1. prefer explicit distractors;
+2. otherwise use host-provided generated distractors;
+3. never treat an accepted answer as a wrong option;
+4. respect distractor exclusions.
+
+
+4. SESSION CONSTRUCTION
+=======================
+
+The host learning selector constructs the session.
+
+The Flashcards game does not decide which items are due or which new items should be
+introduced.
+
+The session may include:
+
+- interaction_type = valid_review;
+- interaction_type = practice;
+- interaction_type = introduction.
+
+A typical ten-item mixed round may include:
+
+- due review items;
+- one or more maintenance questions;
+- up to a small configurable number of new introductions.
+
+Recommended initial default:
+
+    maximum new introductions per round = 3
+
+This value should remain configurable by the host rather than hardcoded as a pack
+rule.
+
+Every item must retain its pack_id and item_id.
+
+
+5. ROUND FLOW
+=============
+
+A round consists of a queue of normal cards plus a retry queue.
+
+Previously introduced items appear as normal questions.
+
+New items use a teaching sequence:
+
+1. show teaching card;
+2. require deliberate continue;
+3. place its test card soon afterwards;
+4. test the learner;
+5. retry later if incorrect.
+
+The round may therefore look like:
+
+1. review question;
+2. review question;
+3. teaching card for Cat;
+4. review question;
+5. immediate Cat test;
+6. teaching card for Dog;
+7. review question;
+8. immediate Dog test;
+9. remaining questions;
+10. retry queue.
+
+New-item tests should occur soon after teaching, but not necessarily as the very next
+screen when other cards are available.
+
+Preferred gap:
+
+    1 to 3 other cards where practical
+
+The ordering may vary slightly to prevent a rigid pattern.
+
+
+6. TEACHING CARD
+================
+
+A teaching card shows the new item with its answer.
+
+For an animal-identification item it may show:
+
+- animal image;
+- canonical answer, such as Cat;
+- optional short explanation;
+- Continue button.
+
+Example:
+
+    [animal image]
+
+    Cat
+
+    Cats are small domesticated mammals often kept as companion animals.
+
+The canonical answer must be prominent.
+
+Optional explanation content may be:
+
+- visible directly;
+- collapsed behind More Information;
+- omitted when unavailable.
+
+The teaching card must not display distractors or ask the learner to guess.
+
+The learner must deliberately continue so the item is not passed without being seen.
+
+
+7. INTRODUCTION STATE
+=====================
+
+New item progress should support:
+
+- lesson_status;
+- lesson_started_at;
+- lesson_completed_at;
+- initial_check_attempts.
+
+Recommended values:
+
+lesson_status:
+- not_started;
+- in_progress;
+- completed.
+
+When the teaching card is first shown:
+
+- lesson_status becomes in_progress;
+- lesson_started_at is recorded by the host learning system.
+
+The mini-game reports the event. It must not write user data directly.
+
+
+8. INITIAL ATTENTION CHECK
+==========================
+
+After teaching, test the new item.
+
+This is an immediate attention check, not a spaced valid review.
+
+It must not:
+
+- append a successful valid review to recent_results;
+- increase mastery as though a time gap occurred;
+- extend an existing spaced-review interval.
+
+It may:
+
+- complete the initial lesson;
+- influence initial difficulty;
+- influence the first review interval;
+- create the linked seed reward after successful completion.
+
+The immediate check uses the normal question presentation.
+
+For example:
+
+    [cat image]
+
+    Name this animal.
+
+If using multiple choice, show suitable answer options.
+
+If using typed input, apply accepted-answer normalization.
+
+
+9. INTRODUCTION SUCCESS
+=======================
+
+When the learner answers the introductory check correctly:
+
+- mark the introduction as finished correctly;
+- report all attempts;
+- allow the host to set lesson_status = completed;
+- allow the host to set lesson_completed_at;
+- allow the host to schedule the first real review;
+- allow the host to create or release the directly linked memory plant into the
+  seed tray.
+
+A new seed should normally enter the tray only after the learner has completed the
+attention check.
+
+The plant is stored within that item's user progress record as defined in the User
+Data and Learning System Schema.
+
+
+10. INTRODUCTION FAILURE AND RETRY
+==================================
+
+If the introductory check is wrong:
+
+1. show the correct answer;
+2. optionally show the explanation;
+3. add the item to the retry queue;
+4. continue with other cards where possible;
+5. test it again later.
+
+Every wrong attempt must be reported.
+
+Initial failures affect personal difficulty.
+
+Suggested host interpretation:
+
+- first-attempt success: little or no difficulty increase;
+- one failure before success: modest difficulty increase;
+- two failures before success: larger difficulty increase;
+- three failures or deferral: strong initial difficulty increase and a shorter first
+  review interval.
+
+The Flashcards game reports attempts. The host learning system calculates the exact
+difficulty value.
+
+
+11. MAXIMUM WRONG ATTEMPTS
+==========================
+
+An item may be answered incorrectly a maximum of three times in one round.
+
+After the third wrong attempt:
+
+1. show the teaching card or correct answer again;
+2. mark the item as deferred or requiring extra practice;
+3. provide a Continue control;
+4. do not trap the learner in an endless retry loop;
+5. include all three failures in the result package.
+
+For an introduction after three failures:
+
+- lesson_status may remain in_progress or be marked incomplete according to the
+  host implementation;
+- no successful attention-check seed should be awarded unless the host deliberately
+  defines a deferred-introduction rule;
+- the item should remain available for early teaching and review;
+- difficulty should increase;
+- the first review or next teaching opportunity should occur sooner.
+
+For a due valid review after three failures:
+
+- the first failure has already resolved the valid review as failed;
+- later retries do not erase the lapse;
+- the item is marked deferred after the third failed attempt;
+- the next review interval should be shortened by the host.
+
+For practice after three failures:
+
+- practice-failure pressure should increase;
+- the host may bring next_review_at closer;
+- no valid-review history entry is created merely because of practice.
+
+
+12. PREVIOUSLY INTRODUCED REVIEW ITEMS
+======================================
+
+For an already introduced item, display the question without first showing the
+answer.
+
+The item may be:
+
+- a due valid review;
+- overdue;
+- ordinary practice;
+- maintenance filler.
+
+The session package identifies the expected interaction type, but the host verifies
+it when applying results.
+
+
+13. VALID REVIEW RESULT
+=======================
+
+For a due valid review, the first meaningful answer determines the scheduled-review
+result.
+
+First answer correct:
+- valid review succeeds;
+- item may still appear later only if the session design requires it;
+- retries are unnecessary.
+
+First answer wrong:
+- valid review fails;
+- show the correct answer;
+- add the item to the retry queue;
+- later correctness does not erase the failed review;
+- the item may finish the session correctly for teaching purposes.
+
+The result package must preserve both facts:
+
+- first_attempt_correct = false;
+- finished_correctly = true or false.
+
+
+14. PRACTICE RESULT
+===================
+
+If the item is not due, its answer is practice.
+
+Practice correct:
+- contributes to game score;
+- reports the attempt;
+- does not create mastery or interval progress.
+
+Practice wrong:
+- shows the correct answer;
+- enters retry queue;
+- reports failures;
+- may increase practice-failure pressure;
+- may cause the host to move the next valid review closer.
+
+The mini-game does not edit next_review_at directly.
+
+
+15. RETRY QUEUE
+===============
+
+All incorrectly answered items enter the retry queue unless they have reached the
+three-failure maximum.
+
+Retry rules:
+
+- show the correct answer immediately after failure;
+- place the item at the back of the retry queue;
+- prefer at least three intervening cards where possible;
+- accept a smaller gap when the round has few remaining cards;
+- do not create another valid scheduled review from a retry;
+- preserve the original interaction type;
+- continue until correct or three failures have occurred.
+
+If an item fails twice, show the full teaching card before its next retry when
+practical.
+
+The retry queue is session state and is not written directly to user.json.
+
+
+16. MULTIPLE-CHOICE MODE
+========================
+
+When using multiple choice:
+
+- display the correct canonical answer;
+- use suitable distractors;
+- shuffle option order;
+- prevent duplicate visible options;
+- never include accepted-answer alternatives as wrong choices;
+- respect distractor exclusions;
+- use a consistent number of options where enough content exists.
+
+Recommended default:
+
+    4 answer choices
+
+When too few valid distractors exist:
+
+- use fewer choices;
+- or ask the host for a different item;
+- do not invent misleading answers.
+
+
+17. TYPED-ANSWER MODE
+=====================
+
+When using typed answers:
+
+- compare against answer.text and accepted_answers;
+- apply the pack or item comparison settings;
+- trim whitespace;
+- normalize case and Unicode as specified;
+- do not require punctuation or articles unless the pack requires them;
+- preserve the original typed response only as temporary session data unless the
+  host explicitly supports storing it.
+
+A blank submission should not normally count as an attempt until the user confirms
+or deliberately skips.
+
+
+18. MEDIA-ONLY PRESENTATION
+===========================
+
+When the pack permits media-only presentation and the chosen mode uses it:
+
+- show the image, audio, or video without the item-specific question text;
+- provide a generic instruction such as Name this animal;
+- preserve the same pack_id and item_id;
+- use normal answer and retry rules.
+
+Media-only presentation must not reveal the answer through filenames, labels, or
+visible debugging text.
+
+
+19. AUDIO AND VIDEO
+===================
+
+For audio questions:
+
+- provide replay;
+- do not autoplay repeatedly without user control;
+- allow the learner to hear the clip before answering.
+
+For video questions:
+
+- provide play and replay;
+- allow the clip to finish or be replayed;
+- do not treat video duration as response time.
+
+Missing optional media should produce a clear fallback rather than crashing the
+round.
+
+
+20. MIXED-PACK ROUNDS
+=====================
+
+A round may mix active packs.
+
+Example:
+
+- animals_basic:domestic_cat;
+- french_002_clothing:chapeau;
+- animals_basic:tiger.
+
+Each card must retain and return its own pack_id.
+
+New introductions must respect each pack's separate active learning window.
+
+The game should present mixed content naturally without merging pack progress.
+
+
+21. RESULT DATA PER ITEM
+========================
+
+Recommended per-item output:
+
+{
+  "pack_id": "animals_basic",
+  "item_id": "domestic_cat",
+  "interaction_type": "valid_review",
+
+  "attempts": [
+    {
+      "correct": false
+    },
+    {
+      "correct": true
+    }
+  ],
+
+  "first_attempt_correct": false,
+  "finished_correctly": true,
+  "deferred": false,
+
+  "introduction": {
+    "teaching_card_shown": false,
+    "attention_check_completed": false
+  }
+}
+
+For a new introduction:
+
+{
+  "pack_id": "animals_basic",
+  "item_id": "domestic_dog",
+  "interaction_type": "introduction",
+
+  "attempts": [
+    {
+      "correct": false
+    },
+    {
+      "correct": true
+    }
+  ],
+
+  "first_attempt_correct": false,
+  "finished_correctly": true,
+  "deferred": false,
+
+  "introduction": {
+    "teaching_card_shown": true,
+    "attention_check_completed": true
+  }
+}
+
+
+22. COMPLETE ROUND RESULT
+=========================
+
+Recommended package:
+
+{
+  "result_schema_version": "1.0",
+  "session_id": "session_20260719_001",
+  "game_id": "flashcards",
+  "user_id": "usr_7f42c89e",
+  "round_completed": true,
+  "ended_at": "2026-07-19T18:08:00+01:00",
+
+  "summary": {
+    "items_presented": 10,
+    "new_items_introduced": 3,
+    "first_attempt_correct": 7,
+    "items_finished_correctly": 9,
+    "items_deferred": 1
+  },
+
+  "results": []
+}
+
+The host validates this package before applying it.
+
+
+23. ROUND COMPLETION
+====================
+
+A round ends when:
+
+- all normal queue items have been presented;
+- every retry item has been answered correctly or deferred after three failures;
+- every new introduction has either completed its attention check or been deferred;
+- the user has not abandoned the round.
+
+The game then submits one result package.
+
+
+24. RESULT SCREEN
+=================
+
+Do not show only a final 10/10 when retries were required.
+
+Recommended summary:
+
+    Round Complete
+
+    First-attempt score: 7 / 10
+    Finished correctly: 9 / 10
+    New memories introduced: 3
+    Items needing extra practice: 1
+
+After the host applies the validated results, it may provide garden consequences for
+display:
+
+- new seeds added to the tray;
+- linked plants watered;
+- plants grown;
+- flowers bloomed;
+- items marked for earlier review.
+
+The mini-game may display these returned consequences, but it does not calculate
+them itself.
+
+
+25. RETURN TO THE GARDEN
+========================
+
+After the result screen:
+
+1. return to the main garden screen;
+2. show new seedlings in the bottom-left seed tray;
+3. show previously planted linked flowers in their updated moisture and growth
+   states;
+4. preserve all garden placement;
+5. save user data through the host storage system.
+
+A flower is updated because it is directly linked to the corresponding pack item in
+the user-learning data.
+
+
+26. INTERRUPTED ROUND
+=====================
+
+If the user leaves before completion:
+
+- mark round_completed = false;
+- do not fabricate correct results;
+- preserve only genuine attempts in the temporary result;
+- let the host decide whether partial results are ignored or applied;
+- do not award introduction seeds directly.
+
+Recommended version-one behaviour:
+
+    Do not apply partial-round learning changes until the round is deliberately
+    completed.
+
+The host may later add session recovery.
+
+
+27. DIFFICULTY EFFECT OF REPEATED ERRORS
+========================================
+
+The game must return every incorrect attempt up to the three-failure limit.
+
+The host uses this to update difficulty.
+
+The game must not return a pre-calculated difficulty number.
+
+Required behavioural meaning:
+
+- one incorrect attempt indicates some difficulty;
+- two incorrect attempts indicate stronger difficulty;
+- three incorrect attempts indicate a clear learning problem;
+- repeated errors should make the item return sooner;
+- repeated errors during practice may bring the formal review time closer;
+- repeated errors during introduction may shorten the first interval;
+- repeated errors during a due valid review increase difficulty and shorten the next
+  interval.
+
+A later retry success does not remove the evidence of earlier failures.
+
+
+28. NO RESPONSE-TIME LEARNING SCORE
+===================================
+
+The central learning result must not depend on response time.
+
+The learner may:
+
+- read slowly;
+- pause;
+- be interrupted;
+- replay media;
+- use accessibility tools.
+
+Flashcards may measure time for presentation statistics if desired, but the host
+scheduler should not use it for mastery or difficulty.
+
+
+29. HOST RESPONSIBILITIES
+=========================
+
+The host application is responsible for:
+
+- selecting compatible items;
+- classifying introduction, valid review, or practice;
+- generating safe distractors when required;
+- validating returned IDs and attempts;
+- deciding whether partial results are accepted;
+- updating mastery;
+- updating difficulty;
+- updating interval_hours;
+- setting next_review_at;
+- updating recent valid-review history;
+- updating practice-failure pressure;
+- changing learning state;
+- creating the linked memory plant;
+- updating plant growth and moisture;
+- saving user data;
+- calculating pack completion;
+- awarding reputation and achievements.
+
+
+30. FLASHCARDS RESPONSIBILITIES
+==============================
+
+Flashcards is responsible for:
+
+- presenting teaching cards;
+- presenting questions;
+- accepting answers;
+- applying pack answer-comparison rules;
+- showing correct answers after mistakes;
+- maintaining the retry queue;
+- limiting wrong attempts to three;
+- allowing deferred continuation after three failures;
+- preserving first-attempt outcomes;
+- reporting all attempts;
+- returning one valid result package;
+- showing a clear round summary;
+- returning control to the host.
+
+
+31. VERSION-ONE ACCEPTANCE CHECKLIST
+====================================
+
+The first Flashcards implementation is complete when:
+
+- it launches as a discovered drop-in mini-game;
+- it accepts host-provided session data;
+- it shows ordinary review questions;
+- it shows teaching cards for new items;
+- it tests new items shortly after teaching;
+- it mixes introductions with review items;
+- wrong answers show the correct answer;
+- wrong items enter a retry queue;
+- retries occur after other cards where possible;
+- no item can be failed more than three times in one round;
+- three failures allow the learner to continue rather than becoming trapped;
+- all attempts are returned;
+- first-attempt failure is not erased by retry success;
+- introduction checks are distinguished from valid reviews;
+- multiple-choice answers use safe distractors;
+- typed answers use accepted-answer rules when enabled;
+- mixed-pack IDs are preserved;
+- the game never writes user.json;
+- the host validates and applies results;
+- new linked plants appear in the tray;
+- existing linked plants update after the round;
+- the user returns to the main garden.
+
+END OF DOCUMENT
