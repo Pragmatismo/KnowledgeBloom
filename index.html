@@ -11,6 +11,34 @@
     <canvas id="garden" width="1672" height="941"></canvas>
     <div id="loading">Growing your garden…</div>
   </main>
+  <section id="guide" class="guide-overlay" hidden aria-label="Game guide">
+    <header class="guide-toolbar">
+      <h1>Garden guide</h1>
+      <div class="guide-actions">
+        <button id="guide-settings" type="button" aria-expanded="false">Settings</button>
+        <button id="guide-close" type="button">Close</button>
+      </div>
+    </header>
+    <aside id="guide-settings-panel" class="settings-panel" hidden>
+      <h2>Garden perspective</h2>
+      <label for="background-select">Background image</label>
+      <div class="background-controls">
+        <select id="background-select"></select>
+        <button id="background-import-button" type="button">Import…</button>
+        <input id="background-import" type="file" accept="image/*" hidden>
+      </div>
+      <label for="horizon-slider">Horizon <output id="horizon-value"></output></label>
+      <input id="horizon-slider" type="range" min="10" max="90" value="50">
+      <div class="horizon-preview">
+        <img id="background-preview" alt="Active garden background">
+        <span id="horizon-line"><b>Horizon</b></span>
+      </div>
+      <label for="row-count-slider">Distance to horizon: <output id="row-count-value">6 rows</output></label>
+      <input id="row-count-slider" type="range" min="2" max="12" value="6">
+      <p class="setting-help">Rows become progressively smaller as they approach the horizon. The next three rows share the horizon layer; older rows are hidden.</p>
+    </aside>
+    <img class="guide-image" src="assets/info/game_info.png" alt="Knowledge in Bloom game guide">
+  </section>
   <script type="module" src="app.js"></script>
 </body>
 </html>
