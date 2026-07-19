@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "game_id": "flashcards",
+  "title": "Flashcards",
+  "description": "Learn new items and review existing ones using question cards.",
+  "icon": "icon.png",
+  "entrypoint": "index.html",
+  "version": "1.0.0",
+  "requirements": {
+    "question": true,
+    "answer": true,
+    "multiple_choice": true,
+    "typed_answer": true,
+    "category": false,
+    "question_media": false,
+    "answer_media": false
+  }
+}
