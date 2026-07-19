@@ -1,0 +1,1387 @@
+KNOWLEDGE IN BLOOM
+LEARNING, USER DATA, GARDEN STATE, AND MINI-GAME INTEGRATION
+Developer Reference — Schema Version 1.0
+
+PURPOSE
+=======
+
+This document defines the agreed data model for user profiles, learning progress,
+spaced-review scheduling, memory plants, garden state, and mini-game integration.
+
+It is intended for developers, Codex, and other coding agents implementing or
+extending Knowledge in Bloom.
+
+The installed learning-pack format is documented separately. Pack files contain
+immutable educational content. User files contain all personal progress and garden
+state.
+
+Core reference rule:
+
+    pack_id:item_id
+
+Example:
+
+    animals_basic:domestic_dog
+
+Pack IDs and item IDs must remain stable between pack versions so user progress can
+continue to reference them.
+
+
+1. STORAGE MODEL
+================
+
+Use one folder per user.
+
+Recommended structure:
+
+users/
+└── usr_7f42c89e/
+    ├── user.json
+    ├── profile/
+    │   └── avatar.png
+    ├── exports/
+    └── backups/
+        ├── user.backup.1.json
+        └── user.backup.2.json
+
+Only user.json is required initially.
+
+Use an internal user ID for the folder name. Do not use display names, email
+addresses, or other personal information in filesystem paths.
+
+Good:
+
+    users/usr_7f42c89e/
+
+Avoid:
+
+    users/john_smith/
+    users/person@example.com/
+
+The folder model is the initial implementation and is useful for local testing,
+exports, backups, and future user-owned resources.
+
+Code should still access user data through a storage abstraction so the same
+logical records can later move to a database for an online multi-user service.
+
+
+2. SEPARATION OF PACK DATA AND USER DATA
+========================================
+
+Learning packs contain:
+
+- question and answer content;
+- media paths;
+- accepted answers;
+- distractors;
+- categories;
+- explanations;
+- credits;
+- pack metadata.
+
+User data contains:
+
+- active, paused, and completed pack status;
+- introduced items;
+- learning state;
+- mastery;
+- difficulty;
+- review dates;
+- recent valid-review results;
+- memory-plant choices;
+- plant placement;
+- garden rows;
+- furniture and inventory;
+- mini-game usage;
+- settings;
+- achievements;
+- activity totals.
+
+Never copy full question or answer content into the user file. Resolve it from the
+installed pack using pack_id and item_id.
+
+
+3. TOP-LEVEL USER FILE
+======================
+
+Recommended top-level structure:
+
+{
+  "schema_version": "1.0",
+  "user_id": "usr_7f42c89e",
+
+  "profile": {},
+  "settings": {},
+  "pack_progress": {},
+  "garden": {},
+  "inventory": {},
+  "game_usage": {},
+  "achievements": {},
+  "activity": {},
+  "prototype": {}
+}
+
+Required top-level sections:
+
+- schema_version
+- user_id
+- settings
+- pack_progress
+- garden
+- inventory
+- game_usage
+
+
+4. PROFILE
+==========
+
+Minimal profile example:
+
+{
+  "profile": {
+    "display_name": "Garden Learner",
+    "created_at": "2026-07-19T14:00:00+01:00",
+    "last_active_at": "2026-07-19T18:30:00+01:00"
+  }
+}
+
+Possible future additions:
+
+- avatar path;
+- preferred language;
+- accessibility settings;
+- teacher or parent controls;
+- public sharing preferences.
+
+Do not store passwords in user.json. Authentication must be handled separately.
+
+
+5. SETTINGS
+===========
+
+Example:
+
+{
+  "settings": {
+    "selected_pack_scope": {
+      "mode": "all_active",
+      "pack_id": null
+    },
+
+    "game_sort_order": "most_recent",
+    "seed_reward_behaviour": "tray",
+    "inventory_filter": "plants",
+    "focused_garden_row_id": "row_0001",
+
+    "audio_enabled": true,
+    "music_enabled": true,
+    "fullscreen": false
+  }
+}
+
+Pack selection modes:
+
+- individual
+- all_active
+- all_everything
+
+For individual mode:
+
+{
+  "mode": "individual",
+  "pack_id": "animals_basic"
+}
+
+all_active:
+- uses active packs;
+- introduces and reviews material from active packs;
+- is the normal mixed-pack mode.
+
+all_everything:
+- uses active packs;
+- may also include due review material from completed packs;
+- does not reintroduce completed-pack material as new.
+
+
+6. PACK PROGRESS
+================
+
+Progress is keyed by stable pack ID.
+
+Example:
+
+{
+  "pack_progress": {
+    "animals_basic": {
+      "status": "active",
+      "installed_version": "1.0.0",
+      "started_at": "2026-07-19T14:10:00+01:00",
+      "completed_at": null,
+
+      "next_item_index": 10,
+      "target_learning_window": 10,
+
+      "items": {}
+    }
+  }
+}
+
+Pack statuses:
+
+active
+- appears in the normal pack selector;
+- may introduce new items;
+- contributes to All Active;
+- supplies due reviews.
+
+paused
+- retains all progress;
+- introduces no new items;
+- normally does not contribute to ordinary sessions;
+- may be resumed later.
+
+completed
+- all items have been introduced;
+- all items have reached the required stable state;
+- is hidden from the normal active-pack cycle;
+- may contribute long-term reviews to All Everything.
+
+A failed review inside a completed pack does not automatically reactivate the
+whole pack.
+
+
+7. ACTIVE LEARNING WINDOW
+=========================
+
+Each active pack maintains approximately a target number of items in early learning
+states.
+
+Example:
+
+{
+  "target_learning_window": 10,
+  "next_item_index": 10
+}
+
+Items in these states normally occupy the active learning window:
+
+- new
+- learning
+- strengthening
+
+When an item becomes sufficiently established, the next unintroduced item may be
+added from the pack's defined order.
+
+Older items remain scheduled for review even after leaving the active learning
+window.
+
+Each pack keeps its own learning window, including when the user selects All Active.
+
+
+8. PER-ITEM PROGRESS
+====================
+
+Only introduced items need user records.
+
+Example:
+
+{
+  "items": {
+    "domestic_dog": {
+      "state": "strengthening",
+
+      "introduced_at": "2026-07-19T14:15:00+01:00",
+      "last_seen_at": "2026-07-19T18:00:00+01:00",
+      "last_valid_review_at": "2026-07-19T18:00:00+01:00",
+      "next_review_at": "2026-07-20T12:00:00+01:00",
+
+      "interval_hours": 18.0,
+      "mastery": 0.46,
+      "difficulty": 0.42,
+
+      "valid_review_count": 3,
+      "lapse_count": 0,
+      "recent_results": [1, 1, 1],
+      "practice_fail_pressure": 0,
+
+      "plant": {}
+    }
+  }
+}
+
+Recommended learning states:
+
+- new
+- learning
+- strengthening
+- established
+- mastered
+
+Learning state and review urgency are separate.
+
+An item may be mastered but currently overdue for review.
+
+
+9. MASTERY AND DIFFICULTY
+=========================
+
+Mastery and difficulty represent different information and both are needed.
+
+MASTERY
+
+Mastery answers:
+
+    How well established is this memory?
+
+Recommended range:
+
+    0.0 to 1.0
+
+Mastery increases through successful valid reviews across meaningful time gaps.
+It should not increase repeatedly through practice before an item is due.
+
+Mastery primarily controls long-term plant growth:
+
+- low mastery -> seedling;
+- developing mastery -> young plant;
+- strong mastery -> mature plant;
+- stable mastery -> flowering plant.
+
+DIFFICULTY
+
+Difficulty answers:
+
+    How cautiously should the scheduler treat this item for this learner?
+
+Recommended range:
+
+    0.1 to 0.9
+
+All items begin with the same default:
+
+    0.5
+
+Difficulty is not set by the pack creator.
+
+It adapts personally:
+
+- successful valid review -> difficulty decreases slightly;
+- failed valid review -> difficulty increases;
+- higher difficulty -> intervals grow more cautiously;
+- lower difficulty -> intervals may grow faster.
+
+Example:
+
+Cat:
+    mastery = 0.70
+    difficulty = 0.20
+
+Mink:
+    mastery = 0.70
+    difficulty = 0.75
+
+Both memories have reached similar progress, but mink has historically been less
+reliable. The scheduler should therefore return mink sooner.
+
+The rolling recent-results list only retains a short history. Difficulty preserves
+a longer-term estimate of how troublesome the item has been.
+
+
+10. REVIEW TIMING
+=================
+
+Each item stores:
+
+- last_valid_review_at
+- next_review_at
+- interval_hours
+
+An item becomes eligible for a valid review when:
+
+    current time >= next_review_at
+
+The first result after eligibility resolves that review opportunity.
+
+Further answers before the next review time are practice only.
+
+Store interval_hours even though it can partly be inferred from timestamps because
+it is useful for:
+
+- calculating the next interval;
+- debugging;
+- scheduling migrations;
+- displaying learning progress;
+- manual corrections;
+- future scheduler changes.
+
+
+11. VALID REVIEW HISTORY
+========================
+
+recent_results stores only valid scheduled-review outcomes.
+
+Example:
+
+{
+  "recent_results": [1, 1, 0, 1, 1]
+}
+
+Values:
+
+    1 = successful valid review
+    0 = failed valid review
+
+Keep a rolling window, initially the most recent ten results.
+
+Do not fill this history by repeatedly showing the same item in one short session.
+
+recent_results helps calculate:
+
+- current reliability;
+- selection priority;
+- difficulty changes;
+- stability;
+- readiness to enter an established or mastered state.
+
+
+12. VALID SUCCESSFUL REVIEW
+===========================
+
+When a due item is answered correctly:
+
+1. Append 1 to recent_results.
+2. Trim recent_results to the rolling maximum.
+3. Increment valid_review_count.
+4. Set last_valid_review_at to the current time.
+5. Increase mastery.
+6. Reduce difficulty slightly.
+7. Increase interval_hours.
+8. Calculate a new next_review_at.
+9. Reset practice_fail_pressure.
+10. Update learning state if thresholds are crossed.
+11. Update derived plant appearance.
+12. Award any valid reputation or achievement rewards.
+
+Only the first result in the review window performs these actions.
+
+
+13. VALID FAILED REVIEW
+=======================
+
+When a due item is answered incorrectly:
+
+1. Append 0 to recent_results.
+2. Trim recent_results.
+3. Increment valid_review_count.
+4. Increment lapse_count where appropriate.
+5. Set last_valid_review_at.
+6. Reduce mastery.
+7. Increase difficulty.
+8. Shorten interval_hours.
+9. Calculate a nearer next_review_at.
+10. Reset practice_fail_pressure.
+11. Keep the item available for further practice in the current session.
+12. Update derived plant moisture.
+
+A later immediate correct answer may improve the game result or session practice,
+but must not erase the valid failed review.
+
+
+14. PRACTICE RESULTS
+====================
+
+Before next_review_at, answers are practice rather than valid reviews.
+
+Practice success:
+
+- update last_seen_at;
+- affect game score;
+- may reduce repetition within the current session;
+- does not increase mastery;
+- does not extend interval;
+- does not append to recent_results.
+
+Practice failure:
+
+- update last_seen_at;
+- affect game score;
+- increase current-session selection priority;
+- increment practice_fail_pressure;
+- may bring next_review_at closer;
+- does not append to recent_results.
+
+Repeated practice failures indicate that the current schedule is too optimistic.
+
+Suggested behaviour:
+
+- practice success: no lasting scheduler progress;
+- practice failure: increase practice_fail_pressure;
+- after repeated failures, move next_review_at closer;
+- valid review: reset practice_fail_pressure.
+
+Current-session exposure counts may remain in memory and do not need permanent
+storage.
+
+
+15. LAST-SEEN AND EXPOSURE COOLDOWN
+===================================
+
+Store:
+
+    last_seen_at
+
+This records any appearance, including practice.
+
+It supports a soft exposure cooldown:
+
+- recently seen items receive lower selection weight;
+- items are not completely locked out;
+- failed items may reappear sooner;
+- a small available pool may require reuse.
+
+Do not use a hard cooldown that prevents a game from filling a round.
+
+
+16. ITEM SELECTION FOR MINI-GAMES
+================================
+
+The central learning selector should choose items. Mini-games should not implement
+their own independent scheduling systems.
+
+The selector receives:
+
+- user ID;
+- pack scope;
+- requested item count;
+- mini-game field requirements;
+- current time.
+
+Important selection factors:
+
+- due status;
+- overdue duration;
+- recent valid failures;
+- difficulty;
+- mastery or learning state;
+- practice failure pressure;
+- recent exposure;
+- pack balance;
+- whether the item is newly introduced;
+- whether the mini-game can use the item's content fields.
+
+Useful candidate groups:
+
+Due items
+    current time >= next_review_at
+
+Overdue items
+    significantly past next_review_at
+
+Weak items
+    recent failures, high difficulty, low reliability, or practice pressure
+
+New and early-stage items
+    currently occupying the active learning window
+
+Maintenance items
+    established or mastered items that are not due
+
+Maintenance items may be used when a game needs more items than are currently due.
+Their answers are practice only unless they become due.
+
+Conceptual priority:
+
+    priority =
+        due_weight
+      + overdue_weight
+      + difficulty_weight
+      + recent_failure_weight
+      + learning_stage_weight
+      + practice_pressure_weight
+      - recent_exposure_penalty
+
+The exact numerical formula is not fixed by this document.
+
+
+17. MINI-GAME RESULT CONTRACT
+=============================
+
+Mini-games receive selected pack items and return results to the central learning
+system.
+
+Mini-games must not directly edit:
+
+- user.json;
+- review dates;
+- mastery;
+- difficulty;
+- garden data;
+- plant state;
+- reputation.
+
+A generic mini-game result should identify:
+
+- game ID;
+- user ID or active session;
+- pack ID;
+- item ID;
+- whether the answer was correct;
+- whether the round was completed.
+
+Example:
+
+{
+  "game_id": "flashcards",
+  "round_completed": true,
+  "results": [
+    {
+      "pack_id": "animals_basic",
+      "item_id": "domestic_dog",
+      "correct": true
+    }
+  ]
+}
+
+The central learning system determines whether each result is:
+
+- a valid scheduled review;
+- ordinary practice;
+- a repeated appearance after a resolved valid review.
+
+Response time is not required by the central learning model because different games
+have incompatible timing behaviour and users may be interrupted.
+
+
+18. INTRODUCING A NEW ITEM
+==========================
+
+When a new item is introduced:
+
+1. Create its progress record.
+2. Set state to new.
+3. Record introduced_at.
+4. Set an initial next_review_at.
+5. Set initial interval_hours.
+6. Set mastery to 0.0.
+7. Set difficulty to 0.5.
+8. Set valid_review_count to 0.
+9. Set lapse_count to 0.
+10. Set recent_results to an empty list.
+11. Set practice_fail_pressure to 0.
+12. Assign or offer a flower type.
+13. Put the memory plant in the seed tray.
+14. Increment next_item_index.
+
+Example starting record:
+
+{
+  "state": "new",
+  "introduced_at": "2026-07-19T14:00:00+01:00",
+  "last_seen_at": null,
+  "last_valid_review_at": null,
+  "next_review_at": "2026-07-19T18:00:00+01:00",
+  "interval_hours": 4.0,
+  "mastery": 0.0,
+  "difficulty": 0.5,
+  "valid_review_count": 0,
+  "lapse_count": 0,
+  "recent_results": [],
+  "practice_fail_pressure": 0
+}
+
+
+19. DIRECT MEMORY-PLANT LINK
+============================
+
+Every introduced learning item owns one memory plant.
+
+The plant record must be stored directly inside that item's progress record.
+
+Example:
+
+{
+  "pack_progress": {
+    "animals_basic": {
+      "items": {
+        "domestic_dog": {
+          "state": "strengthening",
+          "mastery": 0.48,
+          "difficulty": 0.35,
+          "next_review_at": "2026-07-22T12:00:00+01:00",
+
+          "plant": {
+            "plant_id": "plant_animals_basic_domestic_dog",
+            "status": "placed",
+            "plant_type": "yellow",
+            "row_id": "row_0002",
+            "x": 0.72,
+            "depth": 0.41,
+            "placed_at": "2026-07-19T17:30:00+01:00"
+          }
+        }
+      }
+    }
+  }
+}
+
+This direct relationship is a core rule.
+
+The flower earned for dog represents dog permanently.
+
+When dog becomes due or overdue, that exact flower becomes ready for watering or
+wilted.
+
+The garden renderer derives:
+
+- flower species from plant.plant_type;
+- growth stage from the item's mastery or learning state;
+- moisture or wilted state from next_review_at;
+- position from row_id, x, and depth.
+
+Do not maintain a duplicate independent garden record for memory plants.
+
+Decorative flowers and furniture remain separate because they do not represent
+learning items.
+
+
+20. MEMORY-PLANT STATUS
+=======================
+
+Unplanted:
+
+{
+  "plant": {
+    "plant_id": "plant_animals_basic_domestic_dog",
+    "status": "tray",
+    "plant_type": "yellow",
+    "row_id": null,
+    "x": null,
+    "depth": null,
+    "placed_at": null
+  }
+}
+
+Placed:
+
+{
+  "plant": {
+    "plant_id": "plant_animals_basic_domestic_dog",
+    "status": "placed",
+    "plant_type": "yellow",
+    "row_id": "row_0002",
+    "x": 0.72,
+    "depth": 0.41,
+    "placed_at": "2026-07-19T17:30:00+01:00"
+  }
+}
+
+Stored:
+
+{
+  "plant": {
+    "plant_id": "plant_animals_basic_domestic_dog",
+    "status": "stored",
+    "plant_type": "yellow",
+    "row_id": null,
+    "x": null,
+    "depth": null,
+    "placed_at": "2026-07-19T17:30:00+01:00"
+  }
+}
+
+Valid statuses:
+
+- tray
+- placed
+- stored
+
+Removing a plant from the visible garden must never remove or reset learning
+progress.
+
+
+21. PLANT GROWTH AND MOISTURE
+=============================
+
+Do not store the currently displayed sprite frame.
+
+Derive it at render time.
+
+Growth column:
+
+    learning state or mastery
+
+Moisture row:
+
+    current time compared with next_review_at
+
+Growth and moisture are independent.
+
+Examples:
+
+- young + healthy;
+- young + wilted;
+- flowering + healthy;
+- flowering + wilted.
+
+A mastered flowering plant may wilt when long-term review becomes due without
+regressing to a young plant.
+
+Possible derived moisture states:
+
+- watered
+- ready
+- dry
+- very_dry
+
+The current sprite sheets only require:
+
+- healthy
+- wilted
+
+More visual stages may be added later.
+
+
+22. GARDEN STATE
+================
+
+Example garden section:
+
+{
+  "garden": {
+    "garden_name": "My Learning Garden",
+    "reputation": 0,
+    "reputation_level": 1,
+
+    "focused_row_id": "row_0001",
+    "newest_row_id": "row_0001",
+    "next_row_number": 2,
+    "next_object_number": 5,
+
+    "rows": {},
+    "decorative_objects": {},
+    "unlocked_collections": [
+      "level_1"
+    ]
+  }
+}
+
+
+23. GARDEN ROWS
+===============
+
+Example:
+
+{
+  "rows": {
+    "row_0001": {
+      "row_id": "row_0001",
+      "created_at": "2026-07-19T14:30:00+01:00",
+      "order": 0,
+      "name": null
+    },
+
+    "row_0002": {
+      "row_id": "row_0002",
+      "created_at": "2026-07-20T15:00:00+01:00",
+      "order": 1,
+      "name": null
+    }
+  }
+}
+
+The newest row is the normal foreground row.
+
+Memory plants reference rows from their item progress records.
+
+Furniture and decorative objects reference rows from their own records.
+
+Use stable row IDs. Do not rename row IDs merely to close numbering gaps.
+
+
+24. EMPTY FOREGROUND ROW CLEANUP
+================================
+
+Do not save unused empty foreground rows.
+
+Before saving:
+
+1. Find rows containing at least one placed memory plant or placed decorative object.
+2. Remove empty rows newer than the newest occupied row.
+3. Set newest_row_id to the newest occupied row.
+4. If focused_row_id refers to a removed or missing row, set it to newest_row_id.
+5. Recalculate row order if required.
+6. Keep stable row IDs.
+7. If the garden contains no placed objects, keep or create one default empty row and
+   set both newest_row_id and focused_row_id to it.
+
+A row is occupied when it contains at least one:
+
+- memory plant with status = placed;
+- decorative object with status = placed.
+
+Conceptual behaviour:
+
+    occupied_rows = rows containing placed objects
+
+    if occupied_rows:
+        remove empty rows newer than newest occupied row
+        newest_row_id = newest occupied row
+
+        if focused_row_id not in remaining rows:
+            focused_row_id = newest_row_id
+    else:
+        keep or create row_0001
+        newest_row_id = row_0001
+        focused_row_id = row_0001
+
+
+25. DECORATIVE OBJECTS
+======================
+
+Furniture and purely decorative plants are stored separately from memory plants.
+
+Example:
+
+{
+  "decorative_objects": {
+    "object_0001": {
+      "object_id": "object_0001",
+      "asset_type": "furniture",
+      "asset_id": "bench",
+      "source_level": 1,
+
+      "status": "placed",
+      "row_id": "row_0001",
+      "x": 0.62,
+      "depth": 0.38,
+
+      "earned_at": "2026-07-19T18:30:00+01:00",
+      "earned_from": {
+        "type": "prototype",
+        "reference": null
+      }
+    }
+  }
+}
+
+Possible asset types:
+
+- furniture
+- decorative_plant
+- special_reward
+
+Possible statuses:
+
+- inventory
+- placed
+- stored
+
+
+26. INVENTORY
+=============
+
+Example:
+
+{
+  "inventory": {
+    "decorative_object_ids": [
+      "object_0002",
+      "object_0003"
+    ]
+  }
+}
+
+Memory plants do not need to be duplicated in inventory.
+
+The visible editor inventory is built by combining:
+
+- item plants with status tray or stored;
+- decorative objects with status inventory or stored.
+
+This keeps each memory plant directly tied to its learning item.
+
+
+27. NORMALIZED GARDEN COORDINATES
+=================================
+
+Placed objects use normalized logical coordinates.
+
+Example:
+
+{
+  "x": 0.77,
+  "depth": 0.45
+}
+
+Where:
+
+- x = 0 is the left edge;
+- x = 1 is the right edge;
+- depth = 0 is the foreground;
+- depth = 1 is the back of the focused row.
+
+The renderer calculates screen position and scale.
+
+Users do not directly edit object scale.
+
+The renderer draws objects from back to front.
+
+
+28. GARDEN REPUTATION
+=====================
+
+Garden reputation is separate from mastery.
+
+Example:
+
+{
+  "reputation": 145,
+  "reputation_level": 3,
+  "unlocked_collections": [
+    "level_1",
+    "level_2"
+  ]
+}
+
+Reputation may be awarded for:
+
+- introducing items;
+- valid reviews;
+- mastering items;
+- completing packs;
+- challenges;
+- achievements.
+
+Repeated practice should not permit unlimited reputation farming.
+
+Exact reward values are not fixed by this document.
+
+
+29. MINI-GAME USAGE
+===================
+
+Example:
+
+{
+  "game_usage": {
+    "flashcards": {
+      "play_count": 8,
+      "last_played_at": "2026-07-19T18:20:00+01:00"
+    }
+  }
+}
+
+This supports sorting by:
+
+- most played;
+- most recently played;
+- alphabetical.
+
+Learning results belong to item progress, not game-usage records.
+
+
+30. PACK COMPLETION
+===================
+
+A pack is ready to complete when:
+
+- every pack item has been introduced;
+- every item has reached the required stable learning state;
+- no item remains in an initial learning state.
+
+Flowering alone does not automatically prove pack completion.
+
+After completion:
+
+1. Set status to completed.
+2. Record completed_at.
+3. Award completion rewards.
+4. Offer installed suggested follow-up packs from pack metadata.
+5. Retain every review schedule.
+6. Retain all garden plants.
+7. Keep the pack available for All Everything review.
+
+Example:
+
+{
+  "status": "completed",
+  "completed_at": "2026-08-14T12:00:00+01:00",
+  "completion_count": 1,
+  "completion_reward_claimed": true
+}
+
+
+31. MISSING OR UPDATED PACKS
+===========================
+
+If user progress references a missing pack:
+
+- preserve all progress;
+- mark the pack unavailable;
+- do not delete its records;
+- do not select its items;
+- allow progress to resume when reinstalled.
+
+If an update adds new items:
+
+- preserve existing item progress;
+- leave new items unintroduced;
+- allow a completed pack to show new available content without erasing completion
+  history.
+
+If an update removes an item:
+
+- preserve its progress as orphaned data;
+- do not select it for games;
+- retain its memory plant unless the user removes or archives it.
+
+
+32. ACTIVITY AND ACHIEVEMENTS
+=============================
+
+Optional achievement example:
+
+{
+  "achievements": {
+    "first_seed": {
+      "earned_at": "2026-07-19T14:20:00+01:00"
+    }
+  }
+}
+
+Optional activity summary:
+
+{
+  "activity": {
+    "first_session_at": "2026-07-19T14:00:00+01:00",
+    "last_session_at": "2026-07-19T18:30:00+01:00",
+    "total_sessions": 3,
+    "total_valid_reviews": 24,
+    "total_packs_completed": 0
+  }
+}
+
+These are convenience records. Per-item learning records remain authoritative.
+
+
+33. SAVE SAFETY
+===============
+
+Recommended save sequence:
+
+1. Serialize to a temporary file.
+2. Validate the temporary data.
+3. Rename the current user.json to a backup.
+4. Atomically replace user.json with the temporary file.
+5. Retain a small number of recent backups.
+
+Example:
+
+user.json
+backups/user.backup.1.json
+backups/user.backup.2.json
+
+A failed write must not destroy the last valid save.
+
+
+34. ONLINE MULTI-USER SAFETY
+============================
+
+For a hosted service:
+
+- users must never be able to request another user's folder directly;
+- validate all user IDs;
+- never construct paths from untrusted display names;
+- authentication must be separate from user.json;
+- use established authentication and secure password hashing;
+- private learning data must remain private by default;
+- public garden sharing should use an explicit public export or sharing record;
+- the browser must not choose a user folder by changing an untrusted URL parameter.
+
+
+35. MINIMAL COMPLETE EXAMPLE
+============================
+
+{
+  "schema_version": "1.0",
+  "user_id": "usr_7f42c89e",
+
+  "profile": {
+    "display_name": "Garden Learner",
+    "created_at": "2026-07-19T14:00:00+01:00",
+    "last_active_at": "2026-07-19T18:30:00+01:00"
+  },
+
+  "settings": {
+    "selected_pack_scope": {
+      "mode": "individual",
+      "pack_id": "animals_basic"
+    },
+    "game_sort_order": "most_recent",
+    "seed_reward_behaviour": "tray",
+    "inventory_filter": "plants",
+    "focused_garden_row_id": "row_0001"
+  },
+
+  "pack_progress": {
+    "animals_basic": {
+      "status": "active",
+      "installed_version": "1.0.0",
+      "started_at": "2026-07-19T14:10:00+01:00",
+      "completed_at": null,
+      "next_item_index": 10,
+      "target_learning_window": 10,
+
+      "items": {
+        "domestic_cat": {
+          "state": "strengthening",
+          "introduced_at": "2026-07-19T14:15:00+01:00",
+          "last_seen_at": "2026-07-19T18:00:00+01:00",
+          "last_valid_review_at": "2026-07-19T18:00:00+01:00",
+          "next_review_at": "2026-07-20T12:00:00+01:00",
+          "interval_hours": 18.0,
+          "mastery": 0.46,
+          "difficulty": 0.42,
+          "valid_review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [1, 1, 1],
+          "practice_fail_pressure": 0,
+
+          "plant": {
+            "plant_id": "plant_animals_basic_domestic_cat",
+            "status": "placed",
+            "plant_type": "blue",
+            "row_id": "row_0001",
+            "x": 0.77,
+            "depth": 0.45,
+            "placed_at": "2026-07-19T17:30:00+01:00"
+          }
+        },
+
+        "domestic_dog": {
+          "state": "new",
+          "introduced_at": "2026-07-19T14:15:00+01:00",
+          "last_seen_at": null,
+          "last_valid_review_at": null,
+          "next_review_at": "2026-07-19T18:15:00+01:00",
+          "interval_hours": 4.0,
+          "mastery": 0.0,
+          "difficulty": 0.5,
+          "valid_review_count": 0,
+          "lapse_count": 0,
+          "recent_results": [],
+          "practice_fail_pressure": 0,
+
+          "plant": {
+            "plant_id": "plant_animals_basic_domestic_dog",
+            "status": "tray",
+            "plant_type": "poppy",
+            "row_id": null,
+            "x": null,
+            "depth": null,
+            "placed_at": null
+          }
+        }
+      }
+    }
+  },
+
+  "garden": {
+    "garden_name": "My Learning Garden",
+    "reputation": 20,
+    "reputation_level": 1,
+    "focused_row_id": "row_0001",
+    "newest_row_id": "row_0001",
+    "next_row_number": 2,
+    "next_object_number": 2,
+
+    "rows": {
+      "row_0001": {
+        "row_id": "row_0001",
+        "created_at": "2026-07-19T14:30:00+01:00",
+        "order": 0,
+        "name": null
+      }
+    },
+
+    "decorative_objects": {
+      "object_0001": {
+        "object_id": "object_0001",
+        "asset_type": "furniture",
+        "asset_id": "bench",
+        "source_level": 1,
+        "status": "placed",
+        "row_id": "row_0001",
+        "x": 0.58,
+        "depth": 0.34,
+        "earned_at": "2026-07-19T17:00:00+01:00",
+        "earned_from": {
+          "type": "prototype",
+          "reference": null
+        }
+      }
+    },
+
+    "unlocked_collections": [
+      "level_1"
+    ]
+  },
+
+  "inventory": {
+    "decorative_object_ids": []
+  },
+
+  "game_usage": {
+    "flashcards": {
+      "play_count": 2,
+      "last_played_at": "2026-07-19T18:00:00+01:00"
+    }
+  },
+
+  "achievements": {
+    "first_seed": {
+      "earned_at": "2026-07-19T14:20:00+01:00"
+    }
+  },
+
+  "activity": {
+    "first_session_at": "2026-07-19T14:00:00+01:00",
+    "last_session_at": "2026-07-19T18:30:00+01:00",
+    "total_sessions": 1,
+    "total_valid_reviews": 3,
+    "total_packs_completed": 0
+  },
+
+  "prototype": {
+    "enabled": false,
+    "simulated_now": null
+  }
+}
+
+
+36. IMPLEMENTATION CHECKLIST
+============================
+
+The system is correctly implemented when user data plus installed pack files can
+answer all of these questions:
+
+- Which packs is the user actively learning?
+- Which packs are paused or completed?
+- Which items have been introduced?
+- Which items are due now?
+- Which items are overdue?
+- Which items are weak or frequently failed?
+- Which items were shown recently?
+- Which item should be introduced next?
+- Which items should a selected mini-game receive?
+- Which flower represents each learning item?
+- Where is each flower placed?
+- Which exact flower should wilt when an item becomes due?
+- Which garden rows are occupied?
+- Which empty foreground rows should be removed before saving?
+- What furniture and decorative objects does the user own?
+- What has the user unlocked?
+- Which completed packs still require occasional review?
+- Which missing or updated pack references must be preserved?
+
+END OF DOCUMENT
