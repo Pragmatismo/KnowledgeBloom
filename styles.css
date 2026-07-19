@@ -5,7 +5,7 @@ html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background:
 #garden { display: block; width: 100%; height: 100%; object-fit: contain; cursor: default; }
 #loading { position: absolute; padding: 18px 28px; color: #fff8d8; border-radius: 20px; background: #405d3cdd; font-size: 24px; box-shadow: 0 6px 24px #0005; }
 .guide-overlay { position: fixed; inset: 0; z-index: 10; overflow-y: auto; padding: 92px 2vw 4vh; background: #183728; }
-.guide-overlay[hidden], .settings-panel[hidden] { display: none; }
+.guide-overlay[hidden], .settings-panel[hidden], .pack-dialog[hidden] { display: none; }
 .guide-toolbar { position: fixed; z-index: 12; inset: 0 0 auto; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 10px 2vw; color: #fff8d8; background: #27452cf2; box-shadow: 0 3px 16px #0005; }
 .guide-toolbar h1 { margin: 0; font-size: clamp(24px, 3vw, 38px); }
 .guide-actions { display: flex; gap: 12px; }
@@ -17,6 +17,8 @@ html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background:
 .settings-panel label { display: block; margin: 17px 0 8px; font-weight: bold; font-size: 19px; }
 .settings-panel input[type="range"] { width: 100%; accent-color: #b83939; }
 .settings-panel > select { width: 100%; }
+.user-controls { display: flex; gap: 10px; }
+.user-controls select { flex: 1; min-width: 0; }
 .background-controls { display: flex; gap: 10px; }
 .background-controls select { flex: 1; min-width: 0; }
 .horizon-preview { position: relative; width: min(100%, 520px); margin: 12px auto; overflow: hidden; border: 3px solid #506044; border-radius: 12px; aspect-ratio: 16 / 9; background: #263f2d; }
@@ -24,4 +26,27 @@ html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background:
 #horizon-line { position: absolute; top: 50%; left: 0; right: 0; height: 3px; background: #e32626; box-shadow: 0 0 2px #fff; pointer-events: none; }
 #horizon-line b { position: absolute; right: 8px; bottom: 5px; padding: 2px 6px; color: white; background: #b71919e8; font: bold 14px Arial, sans-serif; }
 .setting-help { margin-bottom: 0; color: #526049; line-height: 1.35; }
+.pack-dialog { position: fixed; inset: 0; z-index: 20; overflow-y: auto; padding: 4vh 3vw; background: #17271ddd; }
+.pack-window { position: relative; width: min(1050px, 94vw); min-height: 85vh; margin: auto; padding: 34px; border: 4px solid #849367; border-radius: 24px; color: #293a25; background: #fffaf0; box-shadow: 0 14px 45px #0009; }
+.dialog-close { position: absolute; top: 20px; right: 20px; padding: 10px 20px; border: 2px solid #657653; border-radius: 12px; background: #fff; font: 18px Georgia, serif; cursor: pointer; }
+.pack-header { display: grid; grid-template-columns: 190px 1fr; gap: 26px; padding-right: 90px; border-bottom: 2px solid #d1cfb7; }
+.pack-header img { width: 180px; height: 180px; object-fit: contain; }
+.pack-header h1 { margin: 8px 0; font-size: 40px; }
+.pack-header p { margin: 0 0 14px; font-size: 20px; line-height: 1.4; }
+.pack-header dl { display: grid; grid-template-columns: max-content 1fr; gap: 5px 14px; }
+.pack-header dt { font-weight: bold; }
+.pack-header dd { margin: 0; }
+.context-toggle { display: block; margin: 22px 0; font-size: 19px; font-weight: bold; }
+.context-toggle input { width: 20px; height: 20px; vertical-align: middle; accent-color: #496b43; }
+.pack-items { display: grid; gap: 15px; }
+.pack-item { display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 16px; border: 2px solid #d7d5bd; border-radius: 16px; background: #fff; }
+.pack-item.no-image { grid-template-columns: 1fr; }
+.pack-item > img { width: 130px; height: 110px; object-fit: contain; border-radius: 10px; background: #edf1e7; }
+.pack-item h2 { margin: 0 0 7px; font-size: 22px; }
+.pack-item .answer { margin: 0; color: #3c653a; font-size: 19px; font-weight: bold; }
+.item-context { margin-top: 12px; padding-top: 10px; border-top: 1px solid #ddd9c5; }
+.item-context dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0; }
+.item-context dt { font-weight: bold; }
+.item-context dd { margin: 0; overflow-wrap: anywhere; }
+.media-link { display: inline-block; margin-top: 8px; font-weight: bold; }
 @media (max-width: 600px) { .guide-overlay { padding-inline: 10px; } .guide-toolbar { padding-inline: 10px; } .background-controls { align-items: stretch; flex-direction: column; } }
