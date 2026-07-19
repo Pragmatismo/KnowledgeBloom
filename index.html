@@ -20,6 +20,13 @@
       </div>
     </header>
     <aside id="guide-settings-panel" class="settings-panel" hidden>
+      <h2>Learner</h2>
+      <label for="user-select">Current user</label>
+      <div class="user-controls">
+        <select id="user-select"></select>
+        <button id="add-user-button" type="button">Add new user</button>
+      </div>
+      <p class="setting-help">Each learner has a separate garden, pack status, and learning progress.</p>
       <h2>Mini-games</h2>
       <label for="minigame-sort-select">Cloud carousel order</label>
       <select id="minigame-sort-select">
@@ -46,6 +53,17 @@
       <p class="setting-help">Rows become progressively smaller as they approach the horizon. The next three rows share the horizon layer; older rows are hidden.</p>
     </aside>
     <img class="guide-image" src="assets/info/game_info.png" alt="Knowledge in Bloom game guide">
+  </section>
+  <section id="pack-dialog" class="pack-dialog" hidden aria-modal="true" role="dialog" aria-labelledby="pack-dialog-title">
+    <div class="pack-window">
+      <button id="pack-dialog-close" class="dialog-close" type="button">Close</button>
+      <header class="pack-header">
+        <img id="pack-dialog-icon" alt="">
+        <div><h1 id="pack-dialog-title"></h1><p id="pack-dialog-subtitle"></p><dl id="pack-metadata"></dl></div>
+      </header>
+      <label class="context-toggle"><input id="show-pack-context" type="checkbox"> Show full question context</label>
+      <div id="pack-items" class="pack-items"></div>
+    </div>
   </section>
   <script type="module" src="app.js"></script>
 </body>
