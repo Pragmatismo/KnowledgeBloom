@@ -1,0 +1,1305 @@
+[
+  {
+    "item_id": "mona_lisa_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/mona_lisa.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Mona Lisa",
+      "accepted_answers": [
+        "the Mona Lisa",
+        "La Gioconda",
+        "La Joconde"
+      ]
+    },
+    "distractors": [
+      "The Starry Night",
+      "The Scream",
+      "Girl with a Pearl Earring"
+    ],
+    "explanation": {
+      "text": "Leonardo da Vinci painted the Mona Lisa in the early sixteenth century. It is famous for the sitter’s subtle expression and the atmospheric landscape behind her."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "mona_lisa_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/mona_lisa.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Leonardo da Vinci",
+      "accepted_answers": [
+        "Leonardo",
+        "da Vinci"
+      ]
+    },
+    "distractors": [
+      "Sandro Botticelli",
+      "Grant Wood",
+      "Katsushika Hokusai"
+    ],
+    "explanation": {
+      "text": "Leonardo da Vinci painted the Mona Lisa in the early sixteenth century. It is famous for the sitter’s subtle expression and the atmospheric landscape behind her."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_starry_night_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_starry_night.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Starry Night",
+      "accepted_answers": [
+        "Starry Night"
+      ]
+    },
+    "distractors": [
+      "The Last Supper",
+      "The Birth of Venus",
+      "American Gothic"
+    ],
+    "explanation": {
+      "text": "Vincent van Gogh painted The Starry Night in 1889. Its swirling sky and luminous stars transform the view into an expressive landscape."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_starry_night_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_starry_night.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Vincent van Gogh",
+      "accepted_answers": [
+        "Van Gogh",
+        "Vincent Willem van Gogh"
+      ]
+    },
+    "distractors": [
+      "Diego Velázquez",
+      "Rembrandt",
+      "Michelangelo"
+    ],
+    "explanation": {
+      "text": "Vincent van Gogh painted The Starry Night in 1889. Its swirling sky and luminous stars transform the view into an expressive landscape."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_scream_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_scream.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Scream",
+      "accepted_answers": [
+        "Scream"
+      ]
+    },
+    "distractors": [
+      "The Great Wave off Kanagawa",
+      "Las Meninas",
+      "The Night Watch"
+    ],
+    "explanation": {
+      "text": "Edvard Munch created the best-known painted version of The Scream in 1893. It has become an enduring symbol of anxiety."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_scream_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_scream.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Edvard Munch",
+      "accepted_answers": [
+        "Munch"
+      ]
+    },
+    "distractors": [
+      "Jan van Eyck",
+      "Hieronymus Bosch",
+      "Eugène Delacroix"
+    ],
+    "explanation": {
+      "text": "Edvard Munch created the best-known painted version of The Scream in 1893. It has become an enduring symbol of anxiety."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "girl_with_a_pearl_earring_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/girl_with_a_pearl_earring.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Girl with a Pearl Earring",
+      "accepted_answers": [
+        "The Girl with a Pearl Earring"
+      ]
+    },
+    "distractors": [
+      "The Creation of Adam",
+      "The Arnolfini Portrait",
+      "The Garden of Earthly Delights"
+    ],
+    "explanation": {
+      "text": "Johannes Vermeer painted Girl with a Pearl Earring around 1665. It is a tronie rather than a conventional commissioned portrait."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "girl_with_a_pearl_earring_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/girl_with_a_pearl_earring.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Johannes Vermeer",
+      "accepted_answers": [
+        "Vermeer"
+      ]
+    },
+    "distractors": [
+      "James McNeill Whistler",
+      "Gustav Klimt",
+      "John Constable"
+    ],
+    "explanation": {
+      "text": "Johannes Vermeer painted Girl with a Pearl Earring around 1665. It is a tronie rather than a conventional commissioned portrait."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_last_supper_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_last_supper.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Last Supper",
+      "accepted_answers": [
+        "Last Supper"
+      ]
+    },
+    "distractors": [
+      "Liberty Leading the People",
+      "Whistler's Mother",
+      "The Kiss"
+    ],
+    "explanation": {
+      "text": "Leonardo da Vinci painted The Last Supper in Milan in the late fifteenth century. It shows the moment after Christ announces a betrayal."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_last_supper_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_last_supper.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Leonardo da Vinci",
+      "accepted_answers": [
+        "Leonardo",
+        "da Vinci"
+      ]
+    },
+    "distractors": [
+      "J. M. W. Turner",
+      "Raphael",
+      "Jean-Honoré Fragonard"
+    ],
+    "explanation": {
+      "text": "Leonardo da Vinci painted The Last Supper in Milan in the late fifteenth century. It shows the moment after Christ announces a betrayal."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_birth_of_venus_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_birth_of_venus.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Birth of Venus",
+      "accepted_answers": [
+        "Birth of Venus"
+      ]
+    },
+    "distractors": [
+      "The Hay Wain",
+      "The Fighting Temeraire",
+      "The School of Athens"
+    ],
+    "explanation": {
+      "text": "Sandro Botticelli painted The Birth of Venus around 1485. Venus stands on a shell as she arrives at the shore."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_birth_of_venus_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_birth_of_venus.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Sandro Botticelli",
+      "accepted_answers": [
+        "Botticelli"
+      ]
+    },
+    "distractors": [
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Edvard Munch"
+    ],
+    "explanation": {
+      "text": "Sandro Botticelli painted The Birth of Venus around 1485. Venus stands on a shell as she arrives at the shore."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "american_gothic_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/american_gothic.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "American Gothic",
+      "accepted_answers": [
+        "The American Gothic"
+      ]
+    },
+    "distractors": [
+      "The Swing",
+      "Mona Lisa",
+      "The Starry Night"
+    ],
+    "explanation": {
+      "text": "Grant Wood painted American Gothic in 1930. Its sharply detailed figures and Gothic-style house became icons of American art."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "american_gothic_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/american_gothic.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Grant Wood",
+      "accepted_answers": [
+        "Wood"
+      ]
+    },
+    "distractors": [
+      "Johannes Vermeer",
+      "Sandro Botticelli",
+      "Katsushika Hokusai"
+    ],
+    "explanation": {
+      "text": "Grant Wood painted American Gothic in 1930. Its sharply detailed figures and Gothic-style house became icons of American art."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_great_wave_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_great_wave.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Great Wave off Kanagawa",
+      "accepted_answers": [
+        "The Great Wave",
+        "Great Wave off Kanagawa",
+        "Under the Wave off Kanagawa"
+      ]
+    },
+    "distractors": [
+      "The Scream",
+      "Girl with a Pearl Earring",
+      "The Last Supper"
+    ],
+    "explanation": {
+      "text": "Katsushika Hokusai created The Great Wave off Kanagawa around 1831. Mount Fuji appears small beyond the towering waves."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_great_wave_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_great_wave.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Katsushika Hokusai",
+      "accepted_answers": [
+        "Hokusai"
+      ]
+    },
+    "distractors": [
+      "Diego Velázquez",
+      "Rembrandt",
+      "Michelangelo"
+    ],
+    "explanation": {
+      "text": "Katsushika Hokusai created The Great Wave off Kanagawa around 1831. Mount Fuji appears small beyond the towering waves."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "las_meninas_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/las_meninas.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Las Meninas",
+      "accepted_answers": [
+        "The Maids of Honour",
+        "The Maids of Honor"
+      ]
+    },
+    "distractors": [
+      "The Birth of Venus",
+      "American Gothic",
+      "The Great Wave off Kanagawa"
+    ],
+    "explanation": {
+      "text": "Diego Velázquez painted Las Meninas in 1656. Its arrangement of gazes, reflections and figures makes the viewer part of a royal scene."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "las_meninas_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/las_meninas.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Diego Velázquez",
+      "accepted_answers": [
+        "Velázquez",
+        "Velazquez",
+        "Diego Velazquez"
+      ]
+    },
+    "distractors": [
+      "Jan van Eyck",
+      "Hieronymus Bosch",
+      "Eugène Delacroix"
+    ],
+    "explanation": {
+      "text": "Diego Velázquez painted Las Meninas in 1656. Its arrangement of gazes, reflections and figures makes the viewer part of a royal scene."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_night_watch_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_night_watch.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Night Watch",
+      "accepted_answers": [
+        "Night Watch"
+      ]
+    },
+    "distractors": [
+      "Las Meninas",
+      "The Creation of Adam",
+      "The Arnolfini Portrait"
+    ],
+    "explanation": {
+      "text": "Rembrandt completed The Night Watch in 1642. The group portrait is celebrated for its dramatic lighting and movement."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_night_watch_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_night_watch.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Rembrandt",
+      "accepted_answers": [
+        "Rembrandt van Rijn"
+      ]
+    },
+    "distractors": [
+      "James McNeill Whistler",
+      "Gustav Klimt",
+      "John Constable"
+    ],
+    "explanation": {
+      "text": "Rembrandt completed The Night Watch in 1642. The group portrait is celebrated for its dramatic lighting and movement."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_creation_of_adam_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_creation_of_adam.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Creation of Adam",
+      "accepted_answers": [
+        "Creation of Adam"
+      ]
+    },
+    "distractors": [
+      "The Garden of Earthly Delights",
+      "Liberty Leading the People",
+      "Whistler's Mother"
+    ],
+    "explanation": {
+      "text": "Michelangelo painted The Creation of Adam on the Sistine Chapel ceiling around 1512. The nearly touching hands are among art’s most recognised images."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_creation_of_adam_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_creation_of_adam.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Michelangelo",
+      "accepted_answers": [
+        "Michelangelo Buonarroti"
+      ]
+    },
+    "distractors": [
+      "J. M. W. Turner",
+      "Raphael",
+      "Jean-Honoré Fragonard"
+    ],
+    "explanation": {
+      "text": "Michelangelo painted The Creation of Adam on the Sistine Chapel ceiling around 1512. The nearly touching hands are among art’s most recognised images."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_arnolfini_portrait_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_arnolfini_portrait.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Arnolfini Portrait",
+      "accepted_answers": [
+        "Arnolfini Portrait",
+        "The Arnolfini Wedding",
+        "Portrait of Giovanni Arnolfini and his Wife"
+      ]
+    },
+    "distractors": [
+      "The Kiss",
+      "The Hay Wain",
+      "The Fighting Temeraire"
+    ],
+    "explanation": {
+      "text": "Jan van Eyck painted The Arnolfini Portrait in 1434. Its detailed interior and convex mirror have inspired extensive interpretation."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_arnolfini_portrait_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_arnolfini_portrait.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Jan van Eyck",
+      "accepted_answers": [
+        "Van Eyck",
+        "Jan Van Eyck"
+      ]
+    },
+    "distractors": [
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Edvard Munch"
+    ],
+    "explanation": {
+      "text": "Jan van Eyck painted The Arnolfini Portrait in 1434. Its detailed interior and convex mirror have inspired extensive interpretation."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_garden_of_earthly_delights_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_garden_of_earthly_delights.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Garden of Earthly Delights",
+      "accepted_answers": [
+        "Garden of Earthly Delights"
+      ]
+    },
+    "distractors": [
+      "The School of Athens",
+      "The Swing",
+      "Mona Lisa"
+    ],
+    "explanation": {
+      "text": "Hieronymus Bosch created The Garden of Earthly Delights around 1500. The triptych moves from paradise through fantasy to hell."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_garden_of_earthly_delights_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_garden_of_earthly_delights.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Hieronymus Bosch",
+      "accepted_answers": [
+        "Bosch"
+      ]
+    },
+    "distractors": [
+      "Johannes Vermeer",
+      "Sandro Botticelli",
+      "Grant Wood"
+    ],
+    "explanation": {
+      "text": "Hieronymus Bosch created The Garden of Earthly Delights around 1500. The triptych moves from paradise through fantasy to hell."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "liberty_leading_the_people_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/liberty_leading_the_people.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Liberty Leading the People",
+      "accepted_answers": [
+        "Liberty Leads the People"
+      ]
+    },
+    "distractors": [
+      "The Starry Night",
+      "The Scream",
+      "Girl with a Pearl Earring"
+    ],
+    "explanation": {
+      "text": "Eugène Delacroix painted Liberty Leading the People in 1830. Liberty advances over a barricade carrying the French tricolour."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "liberty_leading_the_people_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/liberty_leading_the_people.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Eugène Delacroix",
+      "accepted_answers": [
+        "Delacroix",
+        "Eugene Delacroix"
+      ]
+    },
+    "distractors": [
+      "Katsushika Hokusai",
+      "Diego Velázquez",
+      "Rembrandt"
+    ],
+    "explanation": {
+      "text": "Eugène Delacroix painted Liberty Leading the People in 1830. Liberty advances over a barricade carrying the French tricolour."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "whistlers_mother_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/whistlers_mother.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Whistler's Mother",
+      "accepted_answers": [
+        "Whistlers Mother",
+        "Arrangement in Grey and Black No. 1",
+        "Arrangement in Gray and Black No. 1"
+      ]
+    },
+    "distractors": [
+      "The Last Supper",
+      "The Birth of Venus",
+      "American Gothic"
+    ],
+    "explanation": {
+      "text": "James McNeill Whistler painted the portrait commonly called Whistler’s Mother in 1871. Its formal title is Arrangement in Grey and Black No. 1."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "whistlers_mother_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/whistlers_mother.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "James McNeill Whistler",
+      "accepted_answers": [
+        "Whistler",
+        "James Whistler"
+      ]
+    },
+    "distractors": [
+      "Michelangelo",
+      "Jan van Eyck",
+      "Hieronymus Bosch"
+    ],
+    "explanation": {
+      "text": "James McNeill Whistler painted the portrait commonly called Whistler’s Mother in 1871. Its formal title is Arrangement in Grey and Black No. 1."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_kiss_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_kiss.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Kiss",
+      "accepted_answers": [
+        "Kiss"
+      ]
+    },
+    "distractors": [
+      "The Great Wave off Kanagawa",
+      "Las Meninas",
+      "The Night Watch"
+    ],
+    "explanation": {
+      "text": "Gustav Klimt painted The Kiss in 1907–1908. The embracing figures are wrapped in richly patterned robes against a gold surface."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_kiss_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_kiss.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Gustav Klimt",
+      "accepted_answers": [
+        "Klimt"
+      ]
+    },
+    "distractors": [
+      "Eugène Delacroix",
+      "James McNeill Whistler",
+      "John Constable"
+    ],
+    "explanation": {
+      "text": "Gustav Klimt painted The Kiss in 1907–1908. The embracing figures are wrapped in richly patterned robes against a gold surface."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_hay_wain_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_hay_wain.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Hay Wain",
+      "accepted_answers": [
+        "Hay Wain"
+      ]
+    },
+    "distractors": [
+      "The Creation of Adam",
+      "The Arnolfini Portrait",
+      "The Garden of Earthly Delights"
+    ],
+    "explanation": {
+      "text": "John Constable painted The Hay Wain in 1821. It presents an idealised rural scene on the River Stour."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_hay_wain_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_hay_wain.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "John Constable",
+      "accepted_answers": [
+        "Constable"
+      ]
+    },
+    "distractors": [
+      "J. M. W. Turner",
+      "Raphael",
+      "Jean-Honoré Fragonard"
+    ],
+    "explanation": {
+      "text": "John Constable painted The Hay Wain in 1821. It presents an idealised rural scene on the River Stour."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_fighting_temeraire_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_fighting_temeraire.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Fighting Temeraire",
+      "accepted_answers": [
+        "Fighting Temeraire",
+        "The Fighting Temeraire Tugged to Her Last Berth to Be Broken Up"
+      ]
+    },
+    "distractors": [
+      "Liberty Leading the People",
+      "Whistler's Mother",
+      "The Kiss"
+    ],
+    "explanation": {
+      "text": "J. M. W. Turner painted The Fighting Temeraire in 1839. An old warship is towed toward its final berth beneath a brilliant sunset."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_fighting_temeraire_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_fighting_temeraire.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "J. M. W. Turner",
+      "accepted_answers": [
+        "Turner",
+        "JMW Turner",
+        "Joseph Mallord William Turner"
+      ]
+    },
+    "distractors": [
+      "Leonardo da Vinci",
+      "Vincent van Gogh",
+      "Edvard Munch"
+    ],
+    "explanation": {
+      "text": "J. M. W. Turner painted The Fighting Temeraire in 1839. An old warship is towed toward its final berth beneath a brilliant sunset."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_school_of_athens_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_school_of_athens.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The School of Athens",
+      "accepted_answers": [
+        "School of Athens"
+      ]
+    },
+    "distractors": [
+      "The Hay Wain",
+      "The Fighting Temeraire",
+      "The Swing"
+    ],
+    "explanation": {
+      "text": "Raphael painted The School of Athens in the early sixteenth century. It gathers ancient philosophers in an idealised classical interior."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_school_of_athens_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_school_of_athens.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Raphael",
+      "accepted_answers": [
+        "Raffaello Sanzio",
+        "Raffaello Sanzio da Urbino"
+      ]
+    },
+    "distractors": [
+      "Johannes Vermeer",
+      "Sandro Botticelli",
+      "Grant Wood"
+    ],
+    "explanation": {
+      "text": "Raphael painted The School of Athens in the early sixteenth century. It gathers ancient philosophers in an idealised classical interior."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_swing_title",
+    "question": {
+      "text": "What is the name of this artwork?",
+      "image": "assets/images/the_swing.png",
+      "category": "Artwork Title",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "The Swing",
+      "accepted_answers": [
+        "Swing",
+        "The Happy Accidents of the Swing"
+      ]
+    },
+    "distractors": [
+      "Mona Lisa",
+      "The Starry Night",
+      "The Scream"
+    ],
+    "explanation": {
+      "text": "Jean-Honoré Fragonard painted The Swing in 1767. The playful garden scene is a famous example of Rococo art."
+    },
+    "tags": [
+      "famous art",
+      "artwork title",
+      "visual identification"
+    ]
+  },
+  {
+    "item_id": "the_swing_artist",
+    "question": {
+      "text": "Who created this artwork?",
+      "image": "assets/images/the_swing.png",
+      "category": "Artist",
+      "credit": {
+        "creator": "Knowledge in Bloom prototype pack builder",
+        "source": "Generated placeholder image",
+        "license": "CC0 1.0"
+      }
+    },
+    "answer": {
+      "text": "Jean-Honoré Fragonard",
+      "accepted_answers": [
+        "Fragonard",
+        "Jean Honore Fragonard"
+      ]
+    },
+    "distractors": [
+      "Katsushika Hokusai",
+      "Diego Velázquez",
+      "Rembrandt"
+    ],
+    "explanation": {
+      "text": "Jean-Honoré Fragonard painted The Swing in 1767. The playful garden scene is a famous example of Rococo art."
+    },
+    "tags": [
+      "famous art",
+      "artist identification",
+      "visual identification"
+    ]
+  }
+]

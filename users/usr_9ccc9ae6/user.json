@@ -1,0 +1,836 @@
+{
+  "save_version": 1,
+  "settings": {
+    "selected_pack_scope": "animals",
+    "minigame_sort": "recent",
+    "last_inventory_filter": "plants",
+    "last_focused_row": "row_1",
+    "background": "assets/backgrounds/field.png",
+    "horizon": 0.5,
+    "row_count": 6,
+    "inventory_order": [
+      "domestic_cat",
+      "domestic_dog",
+      "horse",
+      "cow",
+      "sheep",
+      "pig",
+      "rabbit",
+      "lion",
+      "tiger",
+      "elephant"
+    ],
+    "debug_mode": true
+  },
+  "pack_progress": {
+    "animals": {
+      "status": "active",
+      "installed_version": "1.0.0",
+      "introduced_count": 10,
+      "items": [
+        {
+          "item_id": "domestic_cat",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "blue",
+            "row_id": "row_1",
+            "x": 0.04919137466307277,
+            "depth": 1
+          },
+          "last_seen_at": "2026-07-18T11:38:07.963Z"
+        },
+        {
+          "item_id": "domestic_dog",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "poppy",
+            "row_id": "row_1",
+            "x": 0.1091644204851752,
+            "depth": 0.6551547753279946
+          },
+          "last_seen_at": "2026-07-18T11:38:07.963Z"
+        },
+        {
+          "item_id": "horse",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "purple",
+            "row_id": "row_1",
+            "x": 0.1334231805929919,
+            "depth": 0.21693312089716832
+          },
+          "last_seen_at": "2026-07-18T11:32:32.757Z"
+        },
+        {
+          "item_id": "cow",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-20T05:05:12.748Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 1,
+          "plant": {
+            "status": "planted",
+            "plant_type": "rose",
+            "row_id": "row_1",
+            "x": 0.17857142857142858,
+            "depth": 0.123541620772566,
+            "scale": 0.8473321344609008
+          },
+          "last_seen_at": "2026-07-18T20:43:22.376Z"
+        },
+        {
+          "item_id": "sheep",
+          "state": "mastered",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-23T18:44:59.633Z",
+          "interval_hours": 94,
+          "mastery": 0.96,
+          "difficulty": 0.46,
+          "review_count": 4,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "yellow",
+            "row_id": "row_1",
+            "x": 0.20148247978436656,
+            "depth": 0.03733408219601019,
+            "scale": 0.47829690000000014
+          },
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "valid_review_count": 4
+        },
+        {
+          "item_id": "pig",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "blue",
+            "row_id": "row_1",
+            "x": 0.3247978436657682,
+            "depth": 0.9065934295096155
+          },
+          "last_seen_at": "2026-07-18T11:32:32.757Z"
+        },
+        {
+          "item_id": "rabbit",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "poppy",
+            "row_id": "row_1",
+            "x": 0.3800539083557951,
+            "depth": 0.7413623139045504,
+            "scale": 0.5314410000000002
+          },
+          "last_seen_at": "2026-07-18T11:32:32.757Z"
+        },
+        {
+          "item_id": "lion",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "purple",
+            "row_id": "row_1",
+            "x": 0.4191374663072776,
+            "depth": 0.7413623139045504,
+            "scale": 0.8820900000000002
+          }
+        },
+        {
+          "item_id": "tiger",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "rose",
+            "row_id": "row_1",
+            "x": 0.46630727762803237,
+            "depth": 0.7413623139045504,
+            "scale": 0.6430436100000002
+          }
+        },
+        {
+          "item_id": "elephant",
+          "state": "learning",
+          "introduced_at": "2026-07-18T10:37:14.486Z",
+          "last_valid_review_at": "2026-07-20T02:37:52.739Z",
+          "next_review_at": "2026-07-21T22:37:52.739Z",
+          "interval_hours": 44,
+          "mastery": 0.78,
+          "difficulty": 0.5,
+          "review_count": 3,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "yellow",
+            "row_id": "row_1",
+            "x": 0.5067385444743935,
+            "depth": 0.7700981600967357,
+            "scale": 0.8820900000000002
+          }
+        },
+        {
+          "item_id": "giraffe",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:32:32.757Z",
+          "lesson_completed_at": "2026-07-18T11:32:32.757Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:32:32.757Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T16:44:59.633Z",
+          "interval_hours": 20,
+          "mastery": 0.36,
+          "difficulty": 0.42000000000000004,
+          "valid_review_count": 2,
+          "review_count": 2,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "blue",
+            "row_id": "row_1",
+            "x": 0.6455525606469003,
+            "depth": 0.15946142851279776
+          }
+        },
+        {
+          "item_id": "zebra",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:32:32.757Z",
+          "lesson_completed_at": "2026-07-18T11:32:32.757Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:32:32.757Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T16:44:59.633Z",
+          "interval_hours": 20,
+          "mastery": 0.36,
+          "difficulty": 0.42000000000000004,
+          "valid_review_count": 2,
+          "review_count": 2,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "poppy",
+            "row_id": "row_1",
+            "x": 0.7776280323450134,
+            "depth": 0
+          }
+        },
+        {
+          "item_id": "bear",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:32:32.757Z",
+          "lesson_completed_at": "2026-07-18T11:32:32.757Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:32:32.757Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T16:44:59.633Z",
+          "interval_hours": 20,
+          "mastery": 0.36,
+          "difficulty": 0.42000000000000004,
+          "valid_review_count": 2,
+          "review_count": 2,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "purple",
+            "row_id": "row_1",
+            "x": 0.8787061994609164,
+            "depth": 0
+          }
+        },
+        {
+          "item_id": "gorilla",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:38:07.963Z",
+          "lesson_completed_at": "2026-07-18T11:38:07.963Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:38:07.963Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T16:44:59.633Z",
+          "interval_hours": 20,
+          "mastery": 0.36,
+          "difficulty": 0.42000000000000004,
+          "valid_review_count": 2,
+          "review_count": 2,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "rose",
+            "row_id": "row_1",
+            "x": 0.7257412398921832,
+            "depth": 0.5904991213955776,
+            "scale": 0.8732691000000004
+          }
+        },
+        {
+          "item_id": "panda",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:38:07.963Z",
+          "lesson_completed_at": "2026-07-18T11:38:07.963Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:38:07.963Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T16:44:59.633Z",
+          "interval_hours": 20,
+          "mastery": 0.36,
+          "difficulty": 0.42000000000000004,
+          "valid_review_count": 2,
+          "review_count": 2,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "yellow",
+            "row_id": "row_1",
+            "x": 0.8557951482479784,
+            "depth": 0.454003851982697
+          }
+        },
+        {
+          "item_id": "kangaroo",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:38:07.963Z",
+          "lesson_completed_at": "2026-07-18T11:38:07.963Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:38:07.963Z",
+          "last_seen_at": "2026-07-18T18:07:10.912Z",
+          "last_valid_review_at": "2026-07-18T18:07:10.912Z",
+          "next_review_at": "2026-07-19T03:07:10.912Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "blue",
+            "row_id": "row_1",
+            "x": 0.6206199460916443,
+            "depth": 0.6336028906838551
+          }
+        },
+        {
+          "item_id": "duck",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:44:34.666Z",
+          "lesson_completed_at": "2026-07-18T11:44:34.666Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:44:34.666Z",
+          "last_seen_at": "2026-07-18T18:07:10.912Z",
+          "last_valid_review_at": "2026-07-18T18:07:10.912Z",
+          "next_review_at": "2026-07-19T03:07:10.912Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "poppy",
+            "row_id": "row_1",
+            "x": 0.6024258760107817,
+            "depth": 0.2528529286374001,
+            "scale": 0.9
+          }
+        },
+        {
+          "item_id": "chicken",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:44:34.666Z",
+          "lesson_completed_at": "2026-07-18T11:44:34.666Z",
+          "initial_check_attempts": [
+            false,
+            true
+          ],
+          "introduced_at": "2026-07-18T11:44:34.666Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T08:44:59.633Z",
+          "interval_hours": 12,
+          "mastery": 0.36,
+          "difficulty": 0.5399999999999999,
+          "valid_review_count": 2,
+          "review_count": 2,
+          "lapse_count": 0,
+          "recent_results": [
+            1,
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "purple",
+            "row_id": "row_1",
+            "x": 0.2439353099730458,
+            "depth": 0.8132019293850132
+          }
+        },
+        {
+          "item_id": "dolphin",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:44:34.666Z",
+          "lesson_completed_at": "2026-07-18T11:44:34.666Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:44:34.666Z",
+          "last_seen_at": "2026-07-18T18:07:10.912Z",
+          "last_valid_review_at": "2026-07-18T18:07:10.912Z",
+          "next_review_at": "2026-07-19T03:07:10.912Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "rose",
+            "row_id": "row_1",
+            "x": 0.98,
+            "depth": 0.454003851982697
+          }
+        },
+        {
+          "item_id": "penguin",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:48:28.893Z",
+          "lesson_completed_at": "2026-07-18T11:48:28.893Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:48:28.893Z",
+          "last_seen_at": "2026-07-18T18:07:10.912Z",
+          "last_valid_review_at": "2026-07-18T18:07:10.912Z",
+          "next_review_at": "2026-07-19T03:07:10.912Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "yellow",
+            "row_id": "row_1",
+            "x": 0.31738544474393526,
+            "depth": 0.21693312089716832,
+            "scale": 0.5904900000000002
+          }
+        },
+        {
+          "item_id": "owl",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:48:28.893Z",
+          "lesson_completed_at": "2026-07-18T11:48:28.893Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:48:28.893Z",
+          "last_seen_at": "2026-07-18T18:31:58.367Z",
+          "last_valid_review_at": "2026-07-18T18:31:58.367Z",
+          "next_review_at": "2026-07-19T03:31:58.367Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "blue",
+            "row_id": "row_1",
+            "x": 0.3847708894878706,
+            "depth": 0.2528529286374001,
+            "scale": 0.5314410000000002
+          }
+        },
+        {
+          "item_id": "shark",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T11:48:28.893Z",
+          "lesson_completed_at": "2026-07-18T11:48:28.893Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T11:48:28.893Z",
+          "last_seen_at": "2026-07-18T18:31:58.367Z",
+          "last_valid_review_at": "2026-07-18T18:31:58.367Z",
+          "next_review_at": "2026-07-19T03:31:58.367Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "poppy",
+            "row_id": "row_1",
+            "x": 0.44878706199460916,
+            "depth": 0.2744048132815389,
+            "scale": 0.38742048900000015
+          }
+        },
+        {
+          "item_id": "crocodile",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T18:31:58.367Z",
+          "lesson_completed_at": "2026-07-18T18:31:58.367Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T18:31:58.367Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T05:44:59.633Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "purple",
+            "row_id": "row_2",
+            "x": 0.2857142857142857,
+            "depth": 0.02296615909991792
+          }
+        },
+        {
+          "item_id": "snake",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T18:31:58.367Z",
+          "lesson_completed_at": "2026-07-18T18:31:58.367Z",
+          "initial_check_attempts": [
+            true
+          ],
+          "introduced_at": "2026-07-18T18:31:58.367Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T05:44:59.633Z",
+          "interval_hours": 9,
+          "mastery": 0.18,
+          "difficulty": 0.46,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "rose",
+            "row_id": "row_2",
+            "x": 0.5545822102425876,
+            "depth": 0.10917369767647374
+          }
+        },
+        {
+          "item_id": "frog",
+          "state": "learning",
+          "lesson_status": "completed",
+          "lesson_started_at": "2026-07-18T18:31:58.367Z",
+          "lesson_completed_at": "2026-07-18T18:31:58.367Z",
+          "initial_check_attempts": [
+            false,
+            true
+          ],
+          "introduced_at": "2026-07-18T18:31:58.367Z",
+          "last_seen_at": "2026-07-19T20:44:59.633Z",
+          "last_valid_review_at": "2026-07-19T20:44:59.633Z",
+          "next_review_at": "2026-07-20T02:44:59.633Z",
+          "interval_hours": 6,
+          "mastery": 0.18,
+          "difficulty": 0.58,
+          "valid_review_count": 1,
+          "review_count": 1,
+          "lapse_count": 0,
+          "recent_results": [
+            1
+          ],
+          "practice_fail_pressure": 0,
+          "plant": {
+            "status": "planted",
+            "plant_type": "yellow",
+            "row_id": "row_2",
+            "x": 0.0876010781671159,
+            "depth": 0
+          }
+        }
+      ]
+    }
+  },
+  "garden": {
+    "rows": [
+      {
+        "id": "row_1",
+        "created_at": "2026-07-18T10:36:16.897Z"
+      },
+      {
+        "id": "row_2",
+        "created_at": "2026-07-18T18:32:10.569Z"
+      }
+    ],
+    "focused_row": "row_2"
+  },
+  "inventory": {
+    "furniture": [
+      {
+        "id": "apple",
+        "level": 1,
+        "image": "assets/furniture/level_1/apple.png",
+        "status": "stored"
+      },
+      {
+        "id": "bench",
+        "level": 1,
+        "image": "assets/furniture/level_1/bench.png",
+        "status": "stored"
+      },
+      {
+        "id": "pond",
+        "level": 1,
+        "image": "assets/furniture/level_1/pond.png",
+        "status": "stored"
+      },
+      {
+        "id": "shed",
+        "level": 2,
+        "image": "assets/furniture/level_2/shed.png",
+        "status": "stored"
+      }
+    ],
+    "decorative_plants": []
+  },
+  "game_usage": {
+    "flashcards": {
+      "play_count": 11,
+      "last_played": "2026-07-19T20:44:59.633Z"
+    },
+    "memoryracer": {
+      "play_count": 2,
+      "last_played": "2026-07-18T10:37:50.807Z"
+    }
+  },
+  "prototype": {
+    "simulated_hours": 40
+  },
+  "profile": {
+    "display_name": "Garden Learner"
+  },
+  "user_id": "usr_9ccc9ae6"
+}

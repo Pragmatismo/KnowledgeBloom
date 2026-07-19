@@ -1,0 +1,10 @@
+Knowledge in Bloom pack validation
+==================================
+Pack ID: famous_art
+Artworks: 20
+Learning items: 40
+Images: 20
+Unique item IDs: 40
+
+Result: PASS
+Every artwork image is referenced by exactly two questions.
