@@ -32,3 +32,6 @@ button, input { font: inherit; }
 .summary-grid strong { display: block; font-size: 34px; color: #3f633d; }
 .error { margin-top: 30vh; }
 @media (max-width: 680px) { .game-header { grid-template-columns: 1fr auto; } .round-progress { grid-column: 1 / -1; grid-row: 2; } .choices, .summary-grid { grid-template-columns: 1fr; } .card { min-height: auto; } .typed-form { flex-direction: column; } }
+
+.reward-summary { max-width: 600px; margin: 12px auto 24px; padding: 12px 18px; border-radius: 14px; color: #315632; background: #e4efc8; font-weight: bold; }
+.reward-summary p { margin: 7px 0; }

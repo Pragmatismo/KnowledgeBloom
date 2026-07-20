@@ -59,17 +59,18 @@ def catalogue():
                 entry["items"] = items
             found.append(entry)
         return found
-    furniture = []
-    for image in sorted((ROOT / "assets/furniture").glob("level_*/*.png")):
-        furniture.append({"id": image.stem, "level": int(image.parent.name.split("_")[-1]),
-                          "image": image.relative_to(ROOT).as_posix()})
+    furniture_root = ROOT / "assets/furniture"
+    shop_file = furniture_root / "shop.json"
+    furniture = json.loads(shop_file.read_text()).get("items", []) if shop_file.exists() else []
+    tier_count = len([folder for folder in furniture_root.glob("level_*") if folder.is_dir()])
     flowers = [{"id": p.stem, "image": p.relative_to(ROOT).as_posix()}
                for p in sorted((ROOT / "assets/flowers").glob("*.png"))]
     backgrounds = [{"id": p.stem, "image": p.relative_to(ROOT).as_posix()}
                    for p in sorted((ROOT / "assets/backgrounds").glob("*"))
                    if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp", ".gif"}]
     return {"packs": discover("packs"), "minigames": discover("minigames"),
-            "furniture": furniture, "flowers": flowers, "backgrounds": backgrounds}
+            "furniture": furniture, "furniture_tier_count": tier_count,
+            "flowers": flowers, "backgrounds": backgrounds}
 
 class Handler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
