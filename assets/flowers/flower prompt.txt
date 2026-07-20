@@ -1,0 +1,23 @@
+Create a clean flower sprite sheet for the Knowledge in Bloom learning garden.
+
+Subject: a purple hyacinth growing from a brown bulb.
+
+Layout: 4 columns × 2 rows on a [plain white / transparent background. depending if the tool is able to create genuine transparent backgrounds itself], with each plant centred consistently and enough spacing between sprites.
+
+Top row, left to right:
+
+Tiny newly sprouted hyacinth bulb with two small green shoots.
+Young hyacinth with several upright narrow leaves.
+Mature leafy hyacinth with a larger bulb and dense upright foliage, but no flowers.
+Fully flowering hyacinth with a tall central stem covered in many small purple flowers.
+
+Bottom row, left to right:
+
+Wilted version of the tiny sprout.
+Wilted version of the young plant.
+Wilted version of the mature leafy plant.
+Wilted version of the flowering plant, with drooping leaves and hanging faded purple flowers.
+
+Style: friendly hand-drawn digital game asset, bold dark outlines, simple natural shading, clear readable silhouette, consistent proportions, no labels, no pots, no soil, no decorative background.
+
+All sprites should share the same bottom-centre ground anchor so they can replace one another cleanly during animation.

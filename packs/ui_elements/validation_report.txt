@@ -1,0 +1,8 @@
+Knowledge in Bloom pack validation
+==================================
+Pack ID: ui_elements
+Items: 27
+Images: 27
+Unique item IDs: 27
+
+Result: PASS

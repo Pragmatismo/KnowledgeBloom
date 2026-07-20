@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "ui_elements",
+  "title": "UI Elements",
+  "subtitle": "Recognise common interface controls",
+  "description": "A visual identification pack covering common interface components.",
+  "author": "Knowledge in Bloom",
+  "version": "1.0.0",
+  "language": "en-GB",
+  "icon": "icon.png",
+  "item_files": [
+    "items.json"
+  ],
+  "item_order": "defined",
+  "default_round_size": 10,
+  "capabilities": {
+    "multiple_choice": true,
+    "typed_answer": true,
+    "categorize": true,
+    "media_only": true
+  },
+  "reversible": false,
+  "tags": [
+    "user interface",
+    "ui",
+    "computing",
+    "digital literacy",
+    "design",
+    "beginner"
+  ],
+  "suggested_follow_up_packs": [
+    "web_design",
+    "html_elements"
+  ],
+  "license": {
+    "name": "CC0 1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "credits": [
+    {
+      "name": "Knowledge in Bloom UI pack generator",
+      "role": "Question data and illustrations",
+      "license": "CC0 1.0"
+    }
+  ]
+}
