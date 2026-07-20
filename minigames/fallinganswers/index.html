@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falling Answers · Knowledge in Bloom</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="game">
+    <header class="game-header">
+      <div><span class="eyebrow">Knowledge in Bloom</span><h1>Falling Answers</h1></div>
+      <div class="progress" aria-live="polite"><strong id="progress-label">Preparing the meadow…</strong><div class="progress-track"><span id="progress-bar"></span></div></div>
+      <button id="leave" class="quiet" type="button">Leave round</button>
+    </header>
+    <section id="play" class="play">
+      <div class="hud"><span>Correct <strong id="correct-count">0</strong></span><span>Streak <strong id="streak">0</strong></span><span>Misses <strong id="misses">0</strong></span><span>Move: <strong>← → / A D / pointer</strong></span></div>
+      <div id="field" class="field" tabindex="0" aria-label="Falling answer field. Move the basket with the arrow keys, A and D, or your pointer.">
+        <div class="sun" aria-hidden="true"></div><div class="cloud cloud-one" aria-hidden="true"></div><div class="cloud cloud-two" aria-hidden="true"></div>
+        <div id="fall-zone" class="fall-zone"></div>
+        <div id="catch-line" class="catch-line" aria-hidden="true"></div>
+        <div id="basket" class="basket" aria-label="Your basket"><span></span></div>
+        <div class="meadow" aria-hidden="true"></div>
+      </div>
+      <section class="question-tray" aria-label="Question queue"><div class="tray-title">Catch the clue that matches…</div><div id="question-stack" class="question-stack"></div></section>
+      <p id="status" class="status" aria-live="assertive">Move your basket under the correct falling clue.</p>
+    </section>
+    <section id="overlay" class="overlay" hidden aria-live="polite"></section>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
