@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "item_id": "bench", "title": "Bench", "asset": "assets/furniture/level_1/bench.png", "tier": 1, "price": 25, "repeatable": true },
+    { "item_id": "pond", "title": "Small Pond", "asset": "assets/furniture/level_1/pond.png", "tier": 1, "price": 40, "repeatable": true },
+    { "item_id": "apple", "title": "Apple Tree", "asset": "assets/furniture/level_1/apple.png", "tier": 1, "price": 50, "repeatable": true },
+    { "item_id": "shed", "title": "Shed", "asset": "assets/furniture/level_2/shed.png", "tier": 2, "price": 100, "repeatable": true }
+  ]
+}

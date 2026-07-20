@@ -55,3 +55,6 @@ video.card-media { background: #1c281d; }
 @media (max-width: 460px) { .summary-grid { grid-template-columns: 1fr; } .card-text { font-size: 12px; } }
 @media (max-width: 600px) { .teaching-card { grid-template-columns: 1fr; } .teaching-side { min-height: 150px; } .lesson-arrow { rotate: 90deg; line-height: .6; } }
 @media (prefers-reduced-motion: reduce) { .card-inner { transition-duration: .01ms; } }
+
+.reward-summary { max-width: 600px; margin: 12px auto 24px; padding: 12px 18px; border-radius: 14px; color: #315632; background: #e4efc8; font-weight: bold; }
+.reward-summary p { margin: 7px 0; }

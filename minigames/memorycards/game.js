@@ -135,11 +135,13 @@ function finish(){
   showSummary(false);
 }
 
-function showSummary(accepted){
+function showSummary(accepted,rewards){
   board.hidden=true;lesson.hidden=true;metrics.hidden=true;status.hidden=true;
   let summary=document.querySelector('#summary');summary.hidden=false;
-  summary.replaceChildren(element('span',{class:'eyebrow'},accepted?'Saved to your garden':'Round complete'),element('h2',{},'Round Complete'),element('div',{class:'summary-grid'},stat(`${matched} / ${session.items.length}`,'Pairs found'),stat(turns,'Turns taken'),stat(misses,'Unmatched pairs'),stat(score,'Score')),element('p',{class:'save-note'},accepted?'Every completed pair was sent as one successful learning interaction. Positional guesses did not count as wrong answers.':'Saving your completed pairs…'),element('button',{class:'primary',type:'button',disabled:!accepted,onclick:()=>parent.postMessage({type:'knowledge-bloom:close'},location.origin)},'Return to the garden'));
+  summary.replaceChildren(element('span',{class:'eyebrow'},accepted?'Saved to your garden':'Round complete'),element('h2',{},'Round Complete'),element('div',{class:'summary-grid'},stat(`${matched} / ${session.items.length}`,'Pairs found'),stat(turns,'Turns taken'),stat(misses,'Unmatched pairs'),stat(score,'Score')),element('p',{class:'save-note'},accepted?'Every completed pair was sent as one successful learning interaction. Positional guesses did not count as wrong answers.':'Saving your completed pairs…'),accepted?rewardDetails(rewards):null,element('button',{class:'primary',type:'button',disabled:!accepted,onclick:()=>parent.postMessage({type:'knowledge-bloom:close'},location.origin)},'Return to the garden'));
 }
+
+function rewardDetails(rewards){let box=element('div',{class:'reward-summary'});for(let award of rewards?.awards||[])box.append(element('p',{},`${award.reason}: +${award.amount} Garden Points`));return box}
 
 function stat(value,label){return element('div',{},element('strong',{},String(value)),label)}
 function showError(message){board.replaceChildren(element('p',{class:'summary'},message));status.textContent='This round could not begin.'}
@@ -148,7 +150,7 @@ addEventListener('message',event=>{
   if(event.origin!==location.origin||event.source!==parent)return;
   if(event.data?.type==='knowledge-bloom:session'&&!session)start(event.data.session);
   if(event.data?.type==='knowledge-bloom:result-ack'&&submitted){
-    if(event.data.accepted)showSummary(true);
+    if(event.data.accepted)showSummary(true,event.data.consequences?.garden_points);
     else document.querySelector('#summary').replaceChildren(element('h2',{},'We could not save this round'),element('p',{class:'save-note'},'Your results were not applied. Please return to the garden and try again.'),element('button',{class:'primary',type:'button',onclick:()=>parent.postMessage({type:'knowledge-bloom:close'},location.origin)},'Return to the garden'));
   }
 });
