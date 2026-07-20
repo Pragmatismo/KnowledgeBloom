@@ -5,7 +5,7 @@ html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background:
 #garden { display: block; width: 100%; height: 100%; object-fit: contain; cursor: default; }
 #loading { position: absolute; padding: 18px 28px; color: #fff8d8; border-radius: 20px; background: #405d3cdd; font-size: 24px; box-shadow: 0 6px 24px #0005; }
 .guide-overlay { position: fixed; inset: 0; z-index: 10; overflow-y: auto; padding: 92px 2vw 4vh; background: #183728; }
-.guide-overlay[hidden], .settings-panel[hidden], .pack-dialog[hidden] { display: none; }
+.guide-overlay[hidden], .settings-panel[hidden], .pack-dialog[hidden], .flower-plan-dialog[hidden] { display: none; }
 .guide-toolbar { position: fixed; z-index: 12; inset: 0 0 auto; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 10px 2vw; color: #fff8d8; background: #27452cf2; box-shadow: 0 3px 16px #0005; }
 .guide-toolbar h1 { margin: 0; font-size: clamp(24px, 3vw, 38px); }
 .guide-actions { display: flex; gap: 12px; }
@@ -29,6 +29,15 @@ html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background:
 #horizon-line b { position: absolute; right: 8px; bottom: 5px; padding: 2px 6px; color: white; background: #b71919e8; font: bold 14px Arial, sans-serif; }
 .setting-help { margin-bottom: 0; color: #526049; line-height: 1.35; }
 .pack-dialog { position: fixed; inset: 0; z-index: 20; overflow-y: auto; padding: 4vh 3vw; background: #17271ddd; }
+.flower-plan-dialog { position: fixed; inset: 0; z-index: 25; overflow-y: auto; padding: 5vh 3vw; background: #17271de8; }
+.flower-plan-window { width: min(1080px,94vw); margin: auto; padding: 32px; border: 4px solid #849367; border-radius: 26px; color: #293a25; background: #fffaf0; box-shadow: 0 14px 45px #0009; text-align: center; }
+.flower-plan-header { display: grid; grid-template-columns: 145px 1fr; gap: 24px; align-items: center; padding-bottom: 20px; border-bottom: 2px solid #d1cfb7; text-align: left; }
+.flower-plan-header img { width: 140px; height: 140px; object-fit: contain; }.flower-plan-header h1 { margin: 5px 0; font-size: 38px; }.flower-plan-header p { margin: 5px 0 12px; font-size: 19px; }.flower-plan-kicker { color: #657653; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; }
+.flower-plan-window > h2 { margin: 25px 0 5px; }.flower-plan-help { margin: 0 0 20px; color: #596653; }
+.flower-plan-choices { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; }
+.flower-plan-choice { position: relative; min-height: 185px; overflow: hidden; border: 3px solid #a1aa8a; border-radius: 19px; background: linear-gradient(#e6f2df,#f7ecd3); cursor: pointer; transition: transform .15s,border-color .15s; }.flower-plan-choice:hover,.flower-plan-choice:focus-visible { transform: translateY(-4px); border-color: #426a42; outline: none; }.flower-plan-choice canvas { position: absolute; bottom: 20px; width: 92px; height: 142px; }.flower-plan-choice span { position: absolute; z-index: 1; left: 8px; right: 8px; bottom: 8px; padding: 5px; border-radius: 10px; color: #fff; background: #315338db; font-weight: bold; }
+.flower-plan-cancel { margin-top: 25px; padding: 11px 32px; border: 2px solid #657653; border-radius: 12px; color: #35442e; background: #fff; font: 18px Georgia,serif; cursor: pointer; }
+@media(max-width:800px){.flower-plan-choices{grid-template-columns:repeat(2,1fr)}.flower-plan-header{grid-template-columns:90px 1fr}.flower-plan-header img{width:90px;height:90px}}
 .minigame-dialog { position: fixed; inset: 0; z-index: 30; background: #183728; }
 .minigame-dialog iframe { width: 100%; height: 100%; border: 0; background: #f8f3df; }
 .pack-window { position: relative; width: min(1050px, 94vw); min-height: 85vh; margin: auto; padding: 34px; border: 4px solid #849367; border-radius: 24px; color: #293a25; background: #fffaf0; box-shadow: 0 14px 45px #0009; }
