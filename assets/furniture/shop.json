@@ -1,8 +1,32 @@
 {
   "items": [
+    { "item_id": "lamp", "title": "Garden Lamp", "asset": "assets/furniture/level_1/lamp.png", "tier": 1, "price": 20, "repeatable": true },
     { "item_id": "bench", "title": "Bench", "asset": "assets/furniture/level_1/bench.png", "tier": 1, "price": 25, "repeatable": true },
+    { "item_id": "flowerpot", "title": "Flower Pot", "asset": "assets/furniture/level_1/flowerpot.png", "tier": 1, "price": 30, "repeatable": true },
+    { "item_id": "watering_can", "title": "Watering Can", "asset": "assets/furniture/level_1/watering can.png", "tier": 1, "price": 35, "repeatable": true },
     { "item_id": "pond", "title": "Small Pond", "asset": "assets/furniture/level_1/pond.png", "tier": 1, "price": 40, "repeatable": true },
+    { "item_id": "picnic_blanket", "title": "Picnic Blanket", "asset": "assets/furniture/level_1/blanket.png", "tier": 1, "price": 45, "repeatable": true },
     { "item_id": "apple", "title": "Apple Tree", "asset": "assets/furniture/level_1/apple.png", "tier": 1, "price": 50, "repeatable": true },
-    { "item_id": "shed", "title": "Shed", "asset": "assets/furniture/level_2/shed.png", "tier": 2, "price": 100, "repeatable": true }
+    { "item_id": "bird_feeder", "title": "Bird Feeder", "asset": "assets/furniture/level_1/bird feeder.png", "tier": 1, "price": 55, "repeatable": true },
+    { "item_id": "wheelbarrow", "title": "Wheelbarrow", "asset": "assets/furniture/level_1/wheel barrow.png", "tier": 1, "price": 60, "repeatable": true },
+    { "item_id": "small_fountain", "title": "Small Fountain", "asset": "assets/furniture/level_1/fountain.png", "tier": 1, "price": 70, "repeatable": true },
+
+    { "item_id": "scarecrow", "title": "Scarecrow", "asset": "assets/furniture/level_2/scarecrow.png", "tier": 2, "price": 90, "repeatable": true },
+    { "item_id": "beehive", "title": "Beehive", "asset": "assets/furniture/level_2/Beehive.png", "tier": 2, "price": 100, "repeatable": true },
+    { "item_id": "table_and_chairs", "title": "Table and Chairs", "asset": "assets/furniture/level_2/Table and Chairs.png", "tier": 2, "price": 110, "repeatable": true },
+    { "item_id": "well", "title": "Garden Well", "asset": "assets/furniture/level_2/Well.png", "tier": 2, "price": 120, "repeatable": true },
+    { "item_id": "topiary", "title": "Topiary", "asset": "assets/furniture/level_2/Topiary.png", "tier": 2, "price": 130, "repeatable": true },
+    { "item_id": "shed", "title": "Shed", "asset": "assets/furniture/level_2/shed.png", "tier": 2, "price": 140, "repeatable": true },
+    { "item_id": "pergola", "title": "Pergola", "asset": "assets/furniture/level_2/Pergola.png", "tier": 2, "price": 150, "repeatable": true },
+    { "item_id": "large_fountain", "title": "Large Fountain", "asset": "assets/furniture/level_2/Fountain.png", "tier": 2, "price": 160, "repeatable": true },
+
+    { "item_id": "topiary_cat", "title": "Topiary Cat", "asset": "assets/furniture/level_3/Topiary cat.png", "tier": 3, "price": 200, "repeatable": true },
+    { "item_id": "topiary_dog", "title": "Topiary Dog", "asset": "assets/furniture/level_3/Topiary dog.png", "tier": 3, "price": 215, "repeatable": true },
+    { "item_id": "topiary_elephant", "title": "Topiary Elephant", "asset": "assets/furniture/level_3/Topiary elephant.png", "tier": 3, "price": 230, "repeatable": true },
+    { "item_id": "marble_statue", "title": "Marble Statue", "asset": "assets/furniture/level_3/Marble statue.png", "tier": 3, "price": 245, "repeatable": true },
+    { "item_id": "japanese_bridge", "title": "Japanese Bridge", "asset": "assets/furniture/level_3/Japanese bridge.png", "tier": 3, "price": 260, "repeatable": true },
+    { "item_id": "decorative_windmill", "title": "Decorative Windmill", "asset": "assets/furniture/level_3/Decorative windmill.png", "tier": 3, "price": 280, "repeatable": true },
+    { "item_id": "gazebo", "title": "Gazebo", "asset": "assets/furniture/level_3/Gazebo.png", "tier": 3, "price": 300, "repeatable": true },
+    { "item_id": "giant_oak", "title": "Giant Oak", "asset": "assets/furniture/level_3/Giant oak.png", "tier": 3, "price": 325, "repeatable": true }
   ]
 }
