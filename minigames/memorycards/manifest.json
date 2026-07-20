@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "game_id": "memorycards",
+  "title": "Memory Cards",
+  "description": "Find matching question-and-answer pairs and help your memories bloom.",
+  "icon": "icon.png",
+  "entrypoint": "index.html",
+  "version": "1.0.0",
+  "requirements": {
+    "question": true,
+    "answer": true,
+    "multiple_choice": false,
+    "typed_answer": false,
+    "category": false,
+    "question_media": true,
+    "answer_media": true,
+    "supported_media": ["text", "image", "audio", "video"]
+  }
+}
