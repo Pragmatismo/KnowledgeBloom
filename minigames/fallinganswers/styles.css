@@ -40,7 +40,7 @@ h1 { margin: 2px 0 0; font-size: clamp(24px, 2.6vw, 35px); }
 .question-card img { width: 116px; height: 84px; object-fit: contain; border-radius: 8px; }
 .question-card .item-text { overflow-wrap: anywhere; font-size: clamp(24px, 3.2vw, 40px); font-weight: bold; line-height: 1.05; }
 .question-card img + .item-text { font-size: clamp(13px, 1.25vw, 17px); font-weight: normal; }
-.question-card.caught-right { animation: right .65s; }.question-card.caught-wrong { animation: wrong .65s; }
+.question-card.caught-right { border-color:#319342; background:#cbeebf; box-shadow:0 0 0 3px #3193423d; }.question-card.caught-wrong { border-color:#bd4a3b; background:#ffd4ca; box-shadow:0 0 0 3px #bd4a3b3d; }
 .status { min-height: 26px; margin: 0; padding: 5px 12px; text-align: center; color: #fffce8; background: #294a31; font-weight: bold; }
 .overlay { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 20px; background: #203c2dcc; }
 .panel { width: min(850px, 94vw); max-height: 90vh; overflow: auto; padding: clamp(24px, 4vw, 42px); border: 4px solid #71845a; border-radius: 28px; text-align: center; background: #fffaf0; box-shadow: 0 20px 60px #162b1f88; }
@@ -51,6 +51,5 @@ h1 { margin: 2px 0 0; font-size: clamp(24px, 2.6vw, 35px); }
 .primary { min-width: 190px; min-height: 52px; margin-top: 22px; padding: 10px 18px; border: 3px solid #355d36; border-radius: 15px; color: #fff; background: #426c40; cursor: pointer; }.primary:disabled { opacity: .55; cursor: wait; }
 .summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 20px 0; }.summary-grid div { padding: 13px; border-radius: 13px; background: #edf1df; }.summary-grid strong { display: block; color: #3f633d; font-size: 28px; }
 .reward-summary { padding: 10px; border-radius: 12px; background: #e3efc8; font-weight: bold; }
-@keyframes right { 50% { background:#cbeebf; border-color:#319342; } } @keyframes wrong { 50% { background:#ffd4ca; border-color:#bd4a3b; } }
 @media (max-width: 700px) { .game-header { grid-template-columns: 1fr auto; }.progress { grid-column:1/-1; grid-row:2; }.question-card { display:none; min-height:112px; }.question-card.current { display:flex; }.hud span:last-child { display:none; }.summary-grid { grid-template-columns:1fr 1fr; }.teaching { grid-template-columns:1fr; }.teaching > span { rotate:90deg; } }
 @media (prefers-reduced-motion: reduce) { .basket { transition:none; } }
