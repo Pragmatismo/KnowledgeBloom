@@ -10,23 +10,23 @@ h1 { margin: 2px 0 0; font-size: clamp(24px, 2.8vw, 36px); }
 .progress-track { height: 9px; margin-top: 7px; overflow: hidden; border-radius: 9px; background: #152a1e; }
 #progress-bar { display: block; width: 0; height: 100%; border-radius: inherit; background: #f4d271; transition: width .35s; }
 .quiet { justify-self: end; padding: 9px 16px; border: 2px solid #d8e4c3; border-radius: 12px; color: #fffce9; background: transparent; cursor: pointer; }
-.play-area { width: min(1180px, calc(100vw - 24px)); margin: 0 auto; padding: 12px 0 22px; }
+.play-area { width: calc(100vw - 24px); margin: 0 auto; padding: 12px 0 22px; }
 .metrics { display: flex; justify-content: center; gap: clamp(8px, 3vw, 32px); flex-wrap: wrap; }
 .metrics span { min-width: 105px; padding: 7px 13px; border: 2px solid #6e8057; border-radius: 999px; text-align: center; background: #fff9e5e8; }
 .metrics strong { color: #3d673d; }
 .status { min-height: 24px; margin: 9px 0; text-align: center; color: #314c32; font-weight: bold; }
-.board { --columns: 4; display: grid; grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); gap: clamp(7px, 1.2vw, 14px); max-width: 1100px; margin: auto; perspective: 1200px; }
+.board { --columns: 4; display: grid; grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); gap: clamp(7px, 1.2vw, 14px); width: 100%; margin: auto; perspective: 1200px; }
 .memory-card { position: relative; min-width: 0; border: 0; padding: 0; aspect-ratio: 4 / 3; background: transparent; cursor: pointer; perspective: 900px; }
 .memory-card:focus-visible { outline: 4px solid #f4d271; outline-offset: 3px; border-radius: 17px; }
 .card-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .42s cubic-bezier(.2,.7,.2,1), opacity .35s, scale .35s; }
 .memory-card.revealed .card-inner, .memory-card.matched .card-inner { transform: rotateY(180deg); }
-.card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: clamp(7px, 1.3vw, 15px); border: 3px solid #6e8057; border-radius: 17px; backface-visibility: hidden; box-shadow: 0 7px 16px #1e382648; }
+.card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: clamp(4px, .55vw, 8px); border: 3px solid #6e8057; border-radius: 17px; backface-visibility: hidden; box-shadow: 0 7px 16px #1e382648; }
 .card-back { color: #fffbed; background: repeating-linear-gradient(45deg, #365f3c 0 13px, #426d44 13px 26px); }
 .card-back::before { content: "✿"; display: grid; place-items: center; width: 44%; aspect-ratio: 1; border: 3px solid #f3d57b; border-radius: 50%; color: #f3d57b; background: #315537; font-size: clamp(27px, 5vw, 54px); }
 .card-front { transform: rotateY(180deg); color: #293b2b; background: #fffaf0; }
 .side-label { position: absolute; top: 7px; left: 8px; padding: 3px 8px; border-radius: 999px; color: #52604b; background: #e5edcf; font: 700 9px Arial, sans-serif; letter-spacing: .07em; text-transform: uppercase; }
-.card-text { max-width: 100%; margin: 5px 0 0; overflow-wrap: anywhere; font-size: clamp(14px, 2vw, 23px); font-weight: bold; line-height: 1.16; }
-.card-media { width: 100%; min-height: 0; max-height: 72%; object-fit: contain; border-radius: 10px; }
+.card-text { flex: 0 0 auto; max-width: 100%; margin: 3px 0 0; overflow-wrap: anywhere; font-size: clamp(11px, 1.25vw, 17px); font-weight: bold; line-height: 1.08; }
+.card-media { flex: 1 1 auto; width: 100%; min-height: 0; object-fit: contain; border-radius: 10px; }
 audio.card-media { height: 42px; min-height: 42px; }
 video.card-media { background: #1c281d; }
 .memory-card.matched .card-face { border-color: #398547; background: #e4f4d9; box-shadow: 0 0 0 5px #68ae6288, 0 7px 16px #1e382648; }
