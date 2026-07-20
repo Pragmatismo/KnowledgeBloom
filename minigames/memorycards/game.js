@@ -1,4 +1,4 @@
-const board=document.querySelector('#board'),status=document.querySelector('#status'),progressLabel=document.querySelector('#progress-label'),progressBar=document.querySelector('#progress-bar');
+const board=document.querySelector('#board'),lesson=document.querySelector('#lesson'),status=document.querySelector('#status'),progressLabel=document.querySelector('#progress-label'),progressBar=document.querySelector('#progress-bar'),metrics=document.querySelector('.metrics');
 const metric={turns:document.querySelector('#turns'),flips:document.querySelector('#flips'),streak:document.querySelector('#streak'),score:document.querySelector('#score')};
 let session=null,cards=[],first=null,locked=false,matched=0,turns=0,flips=0,misses=0,streak=0,score=0,startedAt=0,submitted=false,removeTimer=null;
 const shuffle=values=>{let result=[...values];for(let i=result.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]]}return result};
@@ -12,6 +12,12 @@ const sameImage=(a,b)=>{
 function start(value){
   session=value;
   if(!Array.isArray(session.items)||!session.items.length)return showError('No compatible memory pairs were supplied.');
+  let introductions=session.items.filter(item=>item.interaction_type==='introduction');
+  if(introductions.length)return startLesson(introductions);
+  beginRound();
+}
+
+function beginRound(){
   cards=shuffle(session.items.flatMap(item=>[
     {id:`${key(item)}:question`,side:'question',item},
     {id:`${key(item)}:answer`,side:'answer',item}
@@ -19,8 +25,43 @@ function start(value){
   let columns=cards.length<=8?4:cards.length<=12?4:cards.length<=16?4:5;
   board.style.setProperty('--columns',columns);
   board.replaceChildren(...cards.map(renderCard));
+  lesson.hidden=true;metrics.hidden=false;status.hidden=false;board.hidden=false;
+  progressLabel.textContent='Your memory board is ready';
+  status.textContent="Find each question's answer.";
   startedAt=Date.now();
   update();
+}
+
+function startLesson(items){
+  let index=0;
+  board.hidden=true;metrics.hidden=true;status.hidden=true;lesson.hidden=false;
+  const show=()=>{
+    let item=items[index],last=index===items.length-1,content=item.content||{},question=content.question||{},answer=content.answer||{};
+    progressLabel.textContent=`Learning new card ${index+1} of ${items.length}`;
+    progressBar.style.width=`${(index+1)/items.length*100}%`;
+    lesson.replaceChildren(
+      element('span',{class:'eyebrow'},`New card ${index+1} of ${items.length}`),
+      element('h2',{},index===0?'This round will involve these new cards…':'Here is another new card…'),
+      element('p',{class:'lesson-intro'},'Take a moment to learn the question and its matching answer.'),
+      element('div',{class:'teaching-card'},
+        element('div',{class:'teaching-side'},element('span',{class:'side-label'},'Question'),...teachingContent(question,'Question')),
+        element('span',{class:'lesson-arrow','aria-hidden':'true'},'→'),
+        element('div',{class:'teaching-side answer-side'},element('span',{class:'side-label'},'Answer'),...teachingContent(answer,'Answer'))
+      ),
+      element('button',{class:'primary',type:'button',onclick:()=>{if(last)beginRound();else{index++;show()}}},last?'Start round':'Next new card')
+    );
+    lesson.querySelector('.primary').focus();
+  };
+  show();
+}
+
+function teachingContent(content,fallback){
+  let nodes=[];
+  if(content.image)nodes.push(element('img',{class:'lesson-media',src:content.image,alt:content.text||''}));
+  if(content.audio)nodes.push(element('audio',{class:'lesson-media',src:content.audio,controls:true,preload:'metadata','aria-label':`${fallback} audio`}));
+  if(content.video)nodes.push(element('video',{class:'lesson-media',src:content.video,controls:true,preload:'metadata','aria-label':`${fallback} video`}));
+  nodes.push(element('strong',{class:'lesson-text'},content.text||fallback));
+  return nodes;
 }
 
 function renderCard(card){
@@ -95,7 +136,7 @@ function finish(){
 }
 
 function showSummary(accepted){
-  board.hidden=true;document.querySelector('.metrics').hidden=true;status.hidden=true;
+  board.hidden=true;lesson.hidden=true;metrics.hidden=true;status.hidden=true;
   let summary=document.querySelector('#summary');summary.hidden=false;
   summary.replaceChildren(element('span',{class:'eyebrow'},accepted?'Saved to your garden':'Round complete'),element('h2',{},'Round Complete'),element('div',{class:'summary-grid'},stat(`${matched} / ${session.items.length}`,'Pairs found'),stat(turns,'Turns taken'),stat(misses,'Unmatched pairs'),stat(score,'Score')),element('p',{class:'save-note'},accepted?'Every completed pair was sent as one successful learning interaction. Positional guesses did not count as wrong answers.':'Saving your completed pairs…'),element('button',{class:'primary',type:'button',disabled:!accepted,onclick:()=>parent.postMessage({type:'knowledge-bloom:close'},location.origin)},'Return to the garden'));
 }
