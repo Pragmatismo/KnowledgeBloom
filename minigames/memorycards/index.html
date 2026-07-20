@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memory Cards · Knowledge in Bloom</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="game">
+    <header class="game-header">
+      <div class="title"><span class="eyebrow">Knowledge in Bloom</span><h1>Memory Cards</h1></div>
+      <div class="progress" aria-live="polite">
+        <strong id="progress-label">Preparing your board…</strong>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+      </div>
+      <button id="leave" class="quiet" type="button">Leave round</button>
+    </header>
+    <section class="play-area">
+      <div class="metrics" aria-label="Round statistics">
+        <span>Turns <strong id="turns">0</strong></span>
+        <span>Flips <strong id="flips">0</strong></span>
+        <span>Streak <strong id="streak">0</strong></span>
+        <span>Score <strong id="score">0</strong></span>
+      </div>
+      <p id="status" class="status" aria-live="polite">Find each question's answer.</p>
+      <div id="board" class="board" aria-label="Memory card board"></div>
+      <section id="summary" class="summary" hidden aria-live="polite"></section>
+    </section>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
