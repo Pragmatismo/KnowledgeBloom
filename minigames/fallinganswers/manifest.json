@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "game_id": "fallinganswers",
+  "title": "Falling Answers",
+  "description": "Guide a garden basket beneath the right falling clue before it reaches the meadow.",
+  "icon": "icon.png",
+  "entrypoint": "index.html",
+  "version": "1.0.0",
+  "requirements": {
+    "question": true,
+    "answer": true,
+    "multiple_choice": true,
+    "typed_answer": false,
+    "category": false,
+    "question_media": true,
+    "answer_media": true,
+    "supported_media": ["text", "image"]
+  }
+}
