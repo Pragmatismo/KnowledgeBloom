@@ -74,6 +74,33 @@
   <section id="minigame-dialog" class="minigame-dialog" hidden aria-label="Mini-game" aria-modal="true" role="dialog">
     <iframe id="minigame-frame" title="Mini-game"></iframe>
   </section>
+  <section id="pack-editor" class="pack-editor" hidden aria-label="Learning pack editor">
+    <header class="editor-toolbar">
+      <div><span class="editor-kicker">Pack workshop</span><h1>Create New Pack</h1></div>
+      <div class="editor-toolbar-actions"><span id="pack-editor-status" role="status"></span><button id="pack-editor-close" type="button">Close</button><button id="pack-editor-save" class="primary" type="button">Save pack</button></div>
+    </header>
+    <div class="editor-page">
+      <section id="pack-editor-start" class="editor-start">
+        <h2>How would you like to begin?</h2>
+        <p>Start with a blank pack, load one already stored in the system, or import a JSON pack. Nothing is applied until you save.</p>
+        <div class="start-options">
+          <button id="blank-pack" type="button"><b>＋ Blank pack</b><span>Build a pack question by question</span></button>
+          <label><b>↑ Upload JSON</b><span>Import a pack file without media</span><input id="pack-json-upload" type="file" accept="application/json,.json" hidden></label>
+          <div class="load-pack"><b>↻ Load stored pack</b><select id="stored-pack-select"><option value="">Choose a pack…</option></select><button id="load-stored-pack" type="button">Load</button></div>
+        </div>
+      </section>
+      <form id="pack-editor-form" hidden>
+        <nav class="editor-mode" aria-label="Editor detail level">
+          <button type="button" data-mode="minimal">Minimal<small>Questions, answers &amp; media</small></button>
+          <button type="button" data-mode="full">Full<small>All learning fields</small></button>
+          <button type="button" data-mode="extended">Extended<small>Includes attribution</small></button>
+        </nav>
+        <section class="editor-card pack-details"><div class="section-title"><div><span class="step">01</span><h2>Pack details</h2></div><p>The information learners see when choosing this pack.</p></div><div id="pack-fields" class="field-grid"></div></section>
+        <section class="questions-section"><div class="section-title"><div><span class="step">02</span><h2>Questions</h2></div><button id="add-question" class="primary" type="button">＋ Add question</button></div><div id="question-list"></div></section>
+      </form>
+    </div>
+  </section>
   <script type="module" src="app.js"></script>
+  <script type="module" src="pack-editor.js"></script>
 </body>
 </html>
