@@ -21,9 +21,9 @@ h1 { margin: 2px 0 0; font-size: clamp(24px, 2.6vw, 35px); }
 .cloud::before { left: 20px; width: 48px; height: 48px; }.cloud::after { right: 18px; width: 38px; height: 38px; }
 .cloud-one { top: 10%; left: 8%; }.cloud-two { top: 27%; right: 22%; scale: .7; opacity: .8; }
 .fall-zone { position: absolute; inset: 0; }
-.falling-item { position: absolute; top: 0; width: clamp(84px, 11vw, 145px); height: clamp(68px, 11vh, 112px); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 7px; border: 3px solid #617a49; border-radius: 18px; background: #fffdf1; box-shadow: 0 8px 14px #31503b42; transform: translate(-50%, -120%); will-change: transform; }
-.falling-item img { width: 100%; height: 100%; object-fit: contain; border-radius: 11px; }
-.falling-item .item-text { overflow-wrap: anywhere; text-align: center; font-weight: bold; font-size: clamp(14px, 1.7vw, 22px); }
+.falling-item { position: absolute; top: 0; width: clamp(101px, 13.2vw, 174px); min-height: clamp(82px, 13.2vh, 134px); display: flex; flex-direction: column; align-items: stretch; justify-content: center; overflow: hidden; padding: 0; border: 3px solid #617a49; border-radius: 18px; background: #fffdf1; box-shadow: 0 8px 14px #31503b42; transform: translate(-50%, -120%); will-change: transform; }
+.falling-item img { display: block; width: 100%; height: auto; flex: 0 0 auto; object-fit: contain; }
+.falling-item .item-text { padding: 7px; overflow-wrap: anywhere; text-align: center; font-weight: bold; font-size: clamp(13px, 1.5vw, 20px); }
 .falling-item.preview { opacity: .82; scale: .88; }
 .falling-item.correct-flash { border-color: #2f963d; background: #dff6d8; }.falling-item.wrong-flash { border-color: #be4c3e; background: #ffe1d6; }
 .catch-line { position: absolute; right: 0; bottom: 50px; left: 0; border-top: 2px dashed #5d814f88; }
