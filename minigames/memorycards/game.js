@@ -4,7 +4,10 @@ let session=null,cards=[],first=null,locked=false,matched=0,turns=0,flips=0,miss
 const shuffle=values=>{let result=[...values];for(let i=result.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]]}return result};
 const key=item=>`${item.pack_id}:${item.item_id}`;
 const element=(tag,props={},...children)=>{let node=document.createElement(tag);for(let [name,value] of Object.entries(props)){if(name==='class')node.className=value;else if(name.startsWith('on'))node.addEventListener(name.slice(2).toLowerCase(),value);else if(name.includes('-'))node.setAttribute(name,value);else node[name]=value}node.append(...children.filter(value=>value!=null));return node};
-const sameImage=(a,b)=>a.side!==b.side&&a.item.content?.question?.image&&a.item.content.question.image===b.item.content?.question?.image;
+const sameImage=(a,b)=>{
+  let aQuestion=a.item.content?.question||{},bQuestion=b.item.content?.question||{};
+  return a.side!==b.side&&!aQuestion.text?.trim()&&!bQuestion.text?.trim()&&aQuestion.image&&aQuestion.image===bQuestion.image;
+};
 
 function start(value){
   session=value;
