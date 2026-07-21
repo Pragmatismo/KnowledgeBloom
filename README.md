@@ -2,7 +2,7 @@
 
 A canvas-based learning garden with modular lesson packs and mini-games built around a spaced repetition learning system. 
 
-The mini-games are designed to maintain attention in various ways, games designed like memory cards help concentrate on memory but focing you to focus and remember card positions while games like memory racer require quick reactions and strong recal - the more you play the different games the deeper it gets embadded in your memory and the easier it is to remember it when you try. 
+The mini-games are designed to maintain attention in various ways, games designed like memory cards help concentrate on memory by focing you to focus and remember card positions while games like memory racer require quick reactions and strong recal - the more you play the different games the deeper it gets embadded in your memory and the easier it is to remember it when you try. 
 
 ## Gameplay
 
