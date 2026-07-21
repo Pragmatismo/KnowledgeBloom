@@ -19,3 +19,8 @@ python server.py
 ```
 
 Open <http://localhost:8000>. Add folders containing `icon.png` beneath `packs/` or `minigames/` and refresh to discover them. Garden state is written to the ignored `garden-save.json` file.
+
+
+## GPT and Codex 
+
+I created the idea through a long conversation with chatGPT then added all the different elements piece at at a time through various codex promps and planning. 
