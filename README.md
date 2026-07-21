@@ -18,7 +18,7 @@ The three working mini-games are:
 python server.py
 ```
 
-Open <http://localhost:8000>. Add folders containing `icon.png` beneath `packs/` or `minigames/` and refresh to discover them. Garden state is written to the ignored `garden-save.json` file.
+Open <http://localhost:8000>
 
 
 ## GPT and Codex 
