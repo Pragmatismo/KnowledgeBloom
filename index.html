@@ -41,6 +41,7 @@
         Enable debug mode
       </label>
       <p class="setting-help">Shows time controls on the main page for testing flower growth and review timing.</p>
+      <button id="open-flower-editor" class="debug-only" type="button" hidden>Open flower sprite editor</button>
       <h2 class="settings-section-heading">Garden perspective</h2>
       <label for="background-select">Background image</label>
       <div class="background-controls">
@@ -59,6 +60,24 @@
       <p class="setting-help">Rows become progressively smaller as they approach the horizon. The next three rows share the horizon layer; older rows are hidden.</p>
     </aside>
     <img class="guide-image" src="assets/info/game_info.png" alt="Knowledge in Bloom game guide">
+  </section>
+  <section id="flower-editor" class="flower-editor" hidden aria-modal="true" role="dialog" aria-labelledby="flower-editor-title">
+    <header class="editor-toolbar flower-editor-toolbar"><div><span class="editor-kicker">Debug tool</span><h1 id="flower-editor-title">Flower sprite editor</h1></div><button id="flower-editor-close" type="button">Close</button></header>
+    <div class="flower-editor-page">
+      <aside class="flower-editor-controls">
+        <label for="flower-editor-select">Flower</label><select id="flower-editor-select"></select>
+        <label class="flower-upload-button">Upload image<input id="flower-editor-upload" type="file" accept="image/png,image/webp,image/jpeg" hidden></label>
+        <p>Use a standard 4 × 2 sheet: watered stages on top and unwatered stages below. Drag every frame until the bottom-centre of the flower meets the red marker.</p>
+        <label for="flower-editor-name">Save as</label><input id="flower-editor-name" maxlength="64" pattern="[A-Za-z0-9_-]+" autocomplete="off">
+      </aside>
+      <main class="flower-frame-workshop">
+        <div class="flower-frame-heading"><b id="flower-frame-label"></b><span id="flower-frame-count"></span></div>
+        <div id="flower-alignment-box" class="flower-alignment-box" aria-label="Draggable flower frame alignment area"><canvas id="flower-alignment-canvas" width="560" height="520"></canvas><span class="flower-anchor" aria-hidden="true"></span></div>
+        <p class="flower-drag-help">Drag the image in any direction. Content may move outside the box; the complete original frame is retained when saved.</p>
+        <div class="flower-frame-actions"><button id="flower-frame-previous" type="button">← Previous</button><button id="flower-frame-reset" type="button">Reset position</button><button id="flower-frame-next" type="button">Next →</button></div>
+        <div class="flower-save-row"><span id="flower-editor-status" role="status"></span><button id="flower-editor-save" class="primary" type="button">Save sprite sheet</button></div>
+      </main>
+    </div>
   </section>
   <section id="pack-dialog" class="pack-dialog" hidden aria-modal="true" role="dialog" aria-labelledby="pack-dialog-title">
     <div class="pack-window">
@@ -114,5 +133,6 @@
   </section>
   <script type="module" src="app.js"></script>
   <script type="module" src="pack-editor.js"></script>
+  <script type="module" src="flower-editor.js"></script>
 </body>
 </html>

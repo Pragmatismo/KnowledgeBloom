@@ -5,6 +5,7 @@ import json
 import re
 import secrets
 import shutil
+import struct
 import tempfile
 from urllib.parse import unquote
 
@@ -96,6 +97,8 @@ class Handler(SimpleHTTPRequestHandler):
         if match: return self.save_pack_draft(match.group(1))
         if self.path == "/api/backgrounds":
             return self.import_background()
+        if self.path == "/api/flowers":
+            return self.save_flower()
         if self.path == "/api/users":
             return self.create_user()
         if not self.path.startswith("/api/save"): return self.send_error(404)
@@ -140,6 +143,28 @@ class Handler(SimpleHTTPRequestHandler):
         destination.write_bytes(self.rfile.read(size))
         self.send_json({"id": destination.stem,
                         "image": destination.relative_to(ROOT).as_posix()})
+
+    def save_flower(self):
+        """Store a canvas-produced PNG after basic name, size and structure checks."""
+        filename = Path(unquote(self.headers.get("X-Filename", ""))).name
+        if not re.fullmatch(r"[A-Za-z0-9_-]+\.png", filename):
+            return self.send_error(400, "Invalid flower filename")
+        size = int(self.headers.get("Content-Length", 0))
+        if not 24 <= size <= 20 * 1024 * 1024:
+            return self.send_error(400, "Flower image must be a PNG no larger than 20 MB")
+        data = self.rfile.read(size)
+        if data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
+            return self.send_error(400, "Flower image is not a valid PNG")
+        width, height = struct.unpack(">II", data[16:24])
+        if not width or not height or width > 16384 or height > 16384 or width % 4 or height % 2:
+            return self.send_error(400, "Sprite sheet dimensions must be divisible into a 4 by 2 grid")
+        destination = ROOT / "assets/flowers" / filename
+        temporary = destination.with_suffix(".png.tmp")
+        temporary.write_bytes(data)
+        temporary.replace(destination)
+        self.send_json({"id": destination.stem,
+                        "image": destination.relative_to(ROOT).as_posix(),
+                        "width": width, "height": height})
 
     def read_json_body(self, maximum=5 * 1024 * 1024):
         size = int(self.headers.get("Content-Length", 0))
