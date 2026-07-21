@@ -6,11 +6,12 @@ A canvas-based learning garden with modular lesson packs and mini-games built ar
 
 Play learning mini-games to earn flowers and Garden Points while building knowledge through lessons and revision. Plant the flowers you earn, spend Garden Points on increasingly elaborate garden decorations, and arrange both across your garden rows to make the space your own.
 
-The first three mini-games are:
+The first four mini-games are:
 
 - **Flashcards:** Learn new material and review existing questions with multiple-choice or typed answers.
 - **Memory Cards:** Turn over cards to match each question with its answer before the garden timer runs out.
 - **Falling Answers:** Move a basket beneath the correct falling answer to catch it before it reaches the meadow.
+- **Memory Racer:** Select answers as quickly as possible and try to win the race.
 
 ## Run
 
