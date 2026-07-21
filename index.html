@@ -67,13 +67,17 @@
       <aside class="flower-editor-controls">
         <label for="flower-editor-select">Flower</label><select id="flower-editor-select"></select>
         <label class="flower-upload-button">Upload image<input id="flower-editor-upload" type="file" accept="image/png,image/webp,image/jpeg" hidden></label>
-        <p>The complete 4 × 2 source image stays visible. For each stage, move and resize the red crop box so it contains only that flower.</p>
+        <p>Choose the part of the source image to keep, then switch to Align flower to position its base consistently in the finished frame.</p>
         <label for="flower-editor-name">Save as</label><input id="flower-editor-name" maxlength="64" pattern="[A-Za-z0-9_-]+" autocomplete="off">
       </aside>
       <main class="flower-frame-workshop">
         <div class="flower-frame-heading"><b id="flower-frame-label"></b><span id="flower-frame-count"></span></div>
+        <div class="flower-edit-mode" role="group" aria-label="Flower editing mode">
+          <button id="flower-crop-mode" class="active" type="button" aria-pressed="true">1. Select crop</button>
+          <button id="flower-align-mode" type="button" aria-pressed="false">2. Align flower</button>
+        </div>
         <div id="flower-alignment-box" class="flower-alignment-box" aria-label="Full sprite sheet with adjustable crop box"><canvas id="flower-alignment-canvas" width="560" height="520"></canvas></div>
-        <p class="flower-drag-help">Drag inside the red box to position it. Drag an edge or corner handle to resize it, or enter an exact crop size below. Crops are bottom-centred when combined.</p>
+        <p id="flower-drag-help" class="flower-drag-help">Drag inside the red box to position it. Drag an edge or corner handle to resize it, or enter an exact crop size below.</p>
         <div class="flower-crop-size"><label for="flower-crop-width">Crop width <input id="flower-crop-width" type="number" min="1" step="1"></label><span>×</span><label for="flower-crop-height">Crop height <input id="flower-crop-height" type="number" min="1" step="1"></label><span>pixels</span></div>
         <div class="flower-frame-actions"><button id="flower-frame-previous" type="button">← Previous</button><button id="flower-frame-reset" type="button">Reset crop</button><button id="flower-frame-next" type="button">Next →</button></div>
         <div class="flower-save-row"><span id="flower-editor-status" role="status"></span><button id="flower-editor-save" class="primary" type="button">Save sprite sheet</button></div>
