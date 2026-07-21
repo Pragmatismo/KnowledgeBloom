@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memory Racer · Knowledge in Bloom</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="game">
+    <header class="game-header">
+      <div><span class="eyebrow">Knowledge in Bloom</span><h1>Memory Racer</h1></div>
+      <div class="progress" aria-live="polite"><strong id="progress-label">Preparing the race…</strong><div class="progress-track"><span id="progress-bar"></span></div></div>
+      <button id="leave" class="quiet" type="button">Leave round</button>
+    </header>
+
+    <section id="play" class="play">
+      <section class="raceway" aria-label="Race progress">
+        <div class="lane lane-player"><span class="lane-label">You</span><div class="road"><div id="player-car" class="car player-car" aria-label="Your car"><span>🏎️</span></div><i class="finish-line"></i></div></div>
+        <div class="lane lane-rival"><span class="lane-label">Rival</span><div class="road"><div id="rival-car" class="car rival-car" aria-label="Rival car"><span>🏎️</span></div><i class="finish-line"></i></div></div>
+      </section>
+
+      <div class="race-hud"><span>Correct <strong id="correct-count">0</strong></span><span>Misses <strong id="misses">0</strong></span><span>Time <strong id="timer">0:00</strong></span></div>
+
+      <section class="answer-area" aria-label="Answer cards">
+        <div id="answer-grid" class="answer-grid"></div>
+      </section>
+
+      <section class="question-tray" aria-label="Question queue">
+        <div class="tray-heading"><span>Current question</span><strong id="queue-label">3 in view</strong></div>
+        <div id="question-stack" class="question-stack"></div>
+      </section>
+      <p id="status" class="status" aria-live="assertive">Choose the answer that matches the top question.</p>
+    </section>
+    <section id="overlay" class="overlay" hidden aria-live="polite"></section>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
