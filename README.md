@@ -2,6 +2,8 @@
 
 A canvas-based learning garden with modular lesson packs and mini-games built around a spaced repetition learning system. 
 
+The mini-games are designed to maintain attention in various ways, games designed like memory cards help concentrate on memory but focing you to focus and remember card positions while games like memory racer require quick reactions and strong recal - the more you play the different games the deeper it gets embadded in your memory and the easier it is to remember it when you try. 
+
 ## Gameplay
 
 Play learning mini-games to earn flowers and Garden Points while building knowledge through lessons and revision. Plant the flowers you earn, spend Garden Points on increasingly elaborate garden decorations, and arrange both across your garden rows to make the space your own.
